@@ -10,10 +10,16 @@ public class Box {
 
     private int id;
 
+    //public Box(int row, int column, int id) {  /// change order row col
     public Box(int column, int row, int id) {
         this.column = column;
         this.row = row;
         this.id = id;
+
+        above = null;
+        below  = null;
+        previous = null;
+        next = null;
     }
 
     public int getColumn() {
