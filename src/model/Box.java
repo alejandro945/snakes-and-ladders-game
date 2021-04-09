@@ -8,9 +8,12 @@ public class Box {
     private Box previous;
     private Box next;
 
-    public Box(int column, int row) {
+    private int id;
+
+    public Box(int column, int row, int id) {
         this.column = column;
         this.row = row;
+        this.id = id;
     }
 
     public int getColumn() {
@@ -61,4 +64,16 @@ public class Box {
         this.next = next;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /* @Override
+    public String toString(){
+        return id+"";
+    } */
 }

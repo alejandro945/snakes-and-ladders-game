@@ -6,7 +6,7 @@
     -fx-text-fill:white;
     -fx-font-size:25px;
     -fx-background-radius:5 5 5 5;
-    -fx-background-color:rgb(27, 79, 236);
+    -fx-background-color:rgb(102, 102, 102);
 }
 .button:hover{
     -fx-background-color: rgb(233, 32, 32);
