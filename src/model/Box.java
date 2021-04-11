@@ -7,19 +7,16 @@ public class Box {
     private Box below;
     private Box previous;
     private Box next;
-
+    private Snake snake;
+    private Ladder ladder;
+    private Player player;
     private int id;
 
-    //public Box(int row, int column, int id) {  /// change order row col
+    // public Box(int row, int column, int id) { /// change order row col
     public Box(int column, int row, int id) {
         this.column = column;
         this.row = row;
         this.id = id;
-
-        above = null;
-        below  = null;
-        previous = null;
-        next = null;
     }
 
     public int getColumn() {
@@ -78,8 +75,28 @@ public class Box {
         this.id = id;
     }
 
-    /* @Override
-    public String toString(){
-        return id+"";
-    } */
+    public Snake getSnake() {
+        return this.snake;
+    }
+
+    public void setSnake(Snake snake) {
+        this.snake = snake;
+    }
+
+    public Ladder getLadder() {
+        return this.ladder;
+    }
+
+    public void setLadder(Ladder ladder) {
+        this.ladder = ladder;
+    }
+
+    public Player getPlayer() {
+        return this.player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
 }

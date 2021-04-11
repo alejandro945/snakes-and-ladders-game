@@ -2,6 +2,18 @@
 .root{
     -fx-background-color: white;
 }
+
+.button{
+    -fx-text-fill:white; 
+    -fx-font-size:25px; 
+    -fx-font-family: "Georgia"; 
+    -fx-background-radius:5; 
+    -fx-background-color:rgb(129, 48, 204);  
+}
+
+.button:hover{ -fx-background-color: rgb(233, 32, 32);
+}
+
 .buttonOk{
     -fx-text-fill:white;
     -fx-font-size:20px;
@@ -34,6 +46,14 @@
     -fx-text-fill: rgb(32, 32, 32);
 }
 
+.background{
+    -fx-background-image: url("../img/back.jpg");
+    -fx-background-size: cover, auto;
+}
+.linear-grad
+{
+    -fx-background-color: linear-gradient(to bottom left, #A868A0, #2D75E8);
+}
 #floatinglabel{
     -fx-border-radius: 25;
     -fx-background-radius:25;

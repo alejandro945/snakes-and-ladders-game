@@ -18,7 +18,7 @@ public class GameController {
     private MenuController menuController;
 
     public GameController(Game game) {
-        menuController = new MenuController(game);
+        menuController = new MenuController(this, game);
     }
 
     public void welcomeToMenu() throws IOException {
@@ -28,8 +28,15 @@ public class GameController {
         mainPane.getChildren().setAll(menu);
     }
 
+    public void showConfig() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/screens/config.fxml"));
+        fxmlLoader.setController(menuController);
+        Parent menu = fxmlLoader.load();
+        mainPane.getChildren().setAll(menu);
+    }
+
     @FXML
-    void exitGame(MouseEvent event) {
+    public void exitGame(MouseEvent event) {
         if (event.getSource() == exit) {
             System.exit(0);
         }

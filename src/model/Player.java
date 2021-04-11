@@ -13,6 +13,7 @@ public class Player {
     private int turn;
     private String nickName;
     private int score;
+    private int movements;
     private String tokenGame;
 
     public Player(String tokenGame) {
@@ -20,6 +21,7 @@ public class Player {
         posRow = 0;
         posColumn = 0;
         turn = 0;
+        movements = 0;
         completed = false;
         r = new Random();
     }
@@ -46,6 +48,14 @@ public class Player {
 
     public void setTokenGame(String tokenGame) {
         this.tokenGame = tokenGame;
+    }
+
+    public int getMovements() {
+        return this.movements;
+    }
+
+    public void setMovements(int movements) {
+        this.movements = movements;
     }
 
     // public Player(Board b) {
