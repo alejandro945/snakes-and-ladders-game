@@ -19,11 +19,11 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
-        MatrixGrid mg = new MatrixGrid(5, 4);
+        MatrixGrid mg = new MatrixGrid(3, 2);
 
         mg.showMatriz();
 
-        launch(args);
+        //launch(args);
     }
 
     @Override

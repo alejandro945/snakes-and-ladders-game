@@ -12,34 +12,24 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #fff;" styleClass="background" stylesheets="@../assets/styles/styles.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #fff;" styleClass="root" stylesheets="@../assets/styles/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="180.0" fitWidth="168.0" layoutX="366.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/img/magic-genially.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="226.0" layoutY="20.0" text="Snakes and Ladders Game" textFill="WHITE">
+      <Label layoutX="77.0" layoutY="93.0" prefHeight="115.0" prefWidth="449.0" text="Snakes and Ladders Game" textFill="#757575" wrapText="true">
          <font>
-            <Font name="Georgia Bold Italic" size="35.0" />
+            <Font name="System Bold" size="41.0" />
          </font>
       </Label>
-      <Label layoutX="404.0" layoutY="287.0" text="Menu" textFill="WHITE">
-         <font>
-            <Font name="Georgia Bold Italic" size="34.0" />
-         </font>
-      </Label>
-      <Button layoutX="265.0" layoutY="359.0" mnemonicParsing="false" onAction="#config" prefHeight="48.0" prefWidth="370.0" stylesheets="@../assets/styles/styles.css" text="Play!" textFill="WHITE">
+      <Button layoutX="262.0" layoutY="262.0" mnemonicParsing="false" onAction="#config" prefHeight="48.0" prefWidth="158.0" styleClass="buttonExit" stylesheets="@../assets/styles/styles.css" text="Play!" textFill="WHITE">
          <font>
             <Font name="Georgia Bold Italic" size="27.0" />
          </font>
       </Button>
-      <Button layoutX="265.0" layoutY="426.0" mnemonicParsing="false" onAction="#showLeaderboard" prefHeight="48.0" prefWidth="370.0" stylesheets="@../assets/styles/styles.css" text="Leaderboard" textFill="WHITE">
+      <Button layoutX="268.0" layoutY="310.0" mnemonicParsing="false" onAction="#showLeaderboard" prefHeight="48.0" prefWidth="158.0" styleClass="buttonExit" stylesheets="@../assets/styles/styles.css" text="Leaderboard" textFill="WHITE">
          <font>
             <Font name="Georgia Bold Italic" size="27.0" />
          </font>
       </Button>
-      <Button layoutX="265.0" layoutY="498.0" mnemonicParsing="false" onAction="#exit" prefHeight="48.0" prefWidth="370.0" stylesheets="@../assets/styles/styles.css" text="Exit" textFill="WHITE">
+      <Button layoutX="262.0" layoutY="365.0" mnemonicParsing="false" onAction="#exit" prefHeight="48.0" prefWidth="158.0" styleClass="buttonExit" stylesheets="@../assets/styles/styles.css" text="Exit" textFill="WHITE">
          <font>
             <Font name="Georgia Bold Italic" size="27.0" />
          </font>

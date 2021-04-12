@@ -1,9 +1,12 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap'); 
+
+
 .root{
     -fx-background-color: white;
 }
 
-.button{
+.buttonAlejo{
     -fx-text-fill:white; 
     -fx-font-size:25px; 
     -fx-font-family: "Georgia"; 
@@ -11,7 +14,7 @@
     -fx-background-color:rgb(129, 48, 204);  
 }
 
-.button:hover{ -fx-background-color: rgb(233, 32, 32);
+.buttonAlejo:hover{ -fx-background-color: rgb(233, 32, 32);
 }
 
 .buttonOk{
@@ -35,6 +38,7 @@
 }
 
 .buttonExit{
+    -fx-font-weight: bold;
     -fx-text-fill:gray;
     -fx-font-size:20px;
     -fx-border-radius: 0px;
@@ -54,6 +58,19 @@
 {
     -fx-background-color: linear-gradient(to bottom left, #A868A0, #2D75E8);
 }
+
+.title{
+    -fx-font-weight: bold;
+    -fx-text-fill:gray;
+    -fx-font-size:35px;
+}
+
+.textField{
+    -fx-text-fill:gray;
+    -fx-font-size:15px;
+    -fx-background-color:none;
+}
+
 #floatinglabel{
     -fx-border-radius: 25;
     -fx-background-radius:25;
@@ -62,10 +79,7 @@
 #floatinglabel:hover{
     -fx-background-color: rgb(50, 86, 205);
 }
-#title{
-    -fx-fill: #818181;
-    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
-}
+
 #titlebox{
     -fx-background-radius:0 0 10 10;
     -fx-background-color:#E91E63;
