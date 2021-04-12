@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -12,27 +13,41 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #fff;" styleClass="root" stylesheets="@../assets/styles/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane id="background1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" stylesheets="@../assets/styles/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="77.0" layoutY="93.0" prefHeight="115.0" prefWidth="449.0" text="Snakes and Ladders Game" textFill="#757575" wrapText="true">
+      <Pane id="background1" prefHeight="600.0" prefWidth="1200.0" stylesheets="@../assets/styles/styles.css" />
+      <Label layoutX="827.0" layoutY="431.0" prefHeight="115.0" prefWidth="337.0" styleClass="title" stylesheets="@../assets/styles/styles.css" text="Snakes and Ladders Game" textFill="#757575" wrapText="true">
          <font>
             <Font name="System Bold" size="41.0" />
          </font>
       </Label>
-      <Button layoutX="262.0" layoutY="262.0" mnemonicParsing="false" onAction="#config" prefHeight="48.0" prefWidth="158.0" styleClass="buttonExit" stylesheets="@../assets/styles/styles.css" text="Play!" textFill="WHITE">
-         <font>
-            <Font name="Georgia Bold Italic" size="27.0" />
-         </font>
-      </Button>
-      <Button layoutX="268.0" layoutY="310.0" mnemonicParsing="false" onAction="#showLeaderboard" prefHeight="48.0" prefWidth="158.0" styleClass="buttonExit" stylesheets="@../assets/styles/styles.css" text="Leaderboard" textFill="WHITE">
-         <font>
-            <Font name="Georgia Bold Italic" size="27.0" />
-         </font>
-      </Button>
-      <Button layoutX="262.0" layoutY="365.0" mnemonicParsing="false" onAction="#exit" prefHeight="48.0" prefWidth="158.0" styleClass="buttonExit" stylesheets="@../assets/styles/styles.css" text="Exit" textFill="WHITE">
-         <font>
-            <Font name="Georgia Bold Italic" size="27.0" />
-         </font>
-      </Button>
+      <VBox alignment="TOP_CENTER" layoutX="140.0" layoutY="200.0" prefHeight="200.0" prefWidth="255.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#play" prefHeight="48.0" prefWidth="158.0" styleClass="buttonExit" stylesheets="@../assets/styles/styles.css" text="Play!" textFill="WHITE">
+               <font>
+                  <Font name="Georgia Bold Italic" size="27.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#topScores" prefHeight="48.0" prefWidth="180.0" styleClass="buttonExit" stylesheets="@../assets/styles/styles.css" text="Top Scores" textFill="WHITE">
+               <font>
+                  <Font name="Georgia Bold Italic" size="27.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#exit" prefHeight="48.0" prefWidth="158.0" styleClass="buttonExit" stylesheets="@../assets/styles/styles.css" text="Exit" textFill="WHITE">
+               <font>
+                  <Font name="Georgia Bold Italic" size="27.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
    </children>
 </Pane>

@@ -15,15 +15,15 @@
         <menus>
           <Menu id="menuBar" mnemonicParsing="false" text="File">
             <items>
-              <MenuItem id="menuBar" mnemonicParsing="false" text="Menu" />
-                  <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem id="menuBar" mnemonicParsing="false" onAction="#menu" text="Menu" />
+                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem mnemonicParsing="false" text="How to play?" />
-                  <MenuItem mnemonicParsing="false" text="Rules" />
-                  <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" onAction="#howToPlay" text="How to play?" />
+                  <MenuItem mnemonicParsing="false" onAction="#rules" text="Rules" />
+                  <MenuItem mnemonicParsing="false" onAction="#about" text="About" />
             </items>
           </Menu>
         </menus>
@@ -32,7 +32,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Pane layoutX="200.0" layoutY="86.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Pane fx:id="mainPane" layoutX="200.0" layoutY="86.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>
       </AnchorPane>
    </center>
