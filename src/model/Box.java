@@ -90,6 +90,7 @@ public class Box {
     }
 
     public void setLadder(Ladder ladder) {
+        setState(true);
         this.ladder = ladder;
     }
 

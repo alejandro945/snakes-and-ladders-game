@@ -1,11 +1,4 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap'); 
-
-
-.root{
-    -fx-background-color: white;
-}
-
 .buttonAlejo{
     -fx-text-fill:white; 
     -fx-font-size:25px; 
@@ -38,21 +31,37 @@
 }
 
 .buttonExit{
+    -fx-font-family: "Ubuntu"; 
     -fx-font-weight: bold;
-    -fx-text-fill:gray;
-    -fx-font-size:20px;
+    -fx-text-fill:rgb(146, 146, 146);
+    -fx-font-size:25px;
     -fx-border-radius: 0px;
-    -fx-background-radius:5 5 5 5;
-    -fx-background-color:white;
+    -fx-background-color:none;
 }
 
 .buttonExit:hover{
-    -fx-text-fill: rgb(32, 32, 32);
+    -fx-text-fill:rgb(79, 122, 145);
 }
 
-.background{
-    -fx-background-image: url("../img/back.jpg");
+#background1{
+    -fx-background-image: url("../img/Fondo-01.png");
     -fx-background-size: cover, auto;
+}
+#background2{
+    -fx-background-image: url("../img/Fondo-02.png");
+    -fx-background-size: cover, auto;
+}
+#background3{
+    -fx-background-image: url("../img/Fondo-03.png");
+    -fx-background-size: cover, auto;
+}
+#background4{
+    -fx-background-image: url("../img/Fondo-04.png");
+    -fx-background-size: cover, auto;
+}
+#background5{
+    -fx-background-image: url("../img/Fondo-05.png");
+    -fx-background-size: cover, auto;  
 }
 .linear-grad
 {
@@ -60,9 +69,11 @@
 }
 
 .title{
+    -fx-font-family: "Ubuntu"; 
     -fx-font-weight: bold;
-    -fx-text-fill:gray;
-    -fx-font-size:35px;
+    -fx-text-fill:rgb(255, 255, 255);
+    -fx-font-size:48px;
+    -fx-text-alignment: right;
 }
 
 .textField{

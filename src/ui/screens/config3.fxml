@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.shape.*?>
@@ -17,10 +18,11 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="background4" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" stylesheets="@../assets/styles/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="119.0" layoutY="87.0" prefHeight="81.0" prefWidth="381.0" styleClass="title" stylesheets="@../assets/styles/styles.css" text="Configure Player" wrapText="true" />
-      <TextField layoutX="242.0" layoutY="252.0" promptText="#players" styleClass="textField" stylesheets="@../assets/styles/styles.css" />
+      <Pane id="background4" prefHeight="200.0" prefWidth="200.0" stylesheets="@../assets/styles/styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Label layoutX="789.0" layoutY="470.0" prefHeight="118.0" prefWidth="390.0" styleClass="title" stylesheets="@../assets/styles/styles.css" text="Configure Player" wrapText="true" />
+      <TextField fx:id="players" layoutX="242.0" layoutY="252.0" promptText="#players" styleClass="textField" stylesheets="@../assets/styles/styles.css" />
       <Line endX="120.0" layoutX="340.0" layoutY="281.0" startX="-100.0" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="15.0" />
       <ImageView fitHeight="30.0" fitWidth="25.0" layoutX="476.0" layoutY="255.0" onMouseClicked="#next" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -29,6 +31,11 @@
          <viewport>
             <Rectangle2D height="32.0" width="32.0" />
          </viewport>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#9d9d9d" height="25.0" layoutX="221.0" layoutY="503.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: none; -fx-stroke-width: 0px;" width="154.0" />
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#f0f0f000" height="25.0" layoutX="221.0" layoutY="503.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="INSIDE" strokeWidth="2.0" style="-fx-fill: none;" width="200.0" />
    </children>
 </AnchorPane>
