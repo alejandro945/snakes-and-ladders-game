@@ -12,12 +12,14 @@ public class Box {
     private Player player;
     private int id;
     private boolean state;
+    private boolean idRender;
 
     public Box(int row, int column, int id) {
         this.column = column;
         this.row = row;
         this.id = id;
         state = false;
+        idRender = true;
     }
 
     public int getColumn() {
@@ -108,6 +110,18 @@ public class Box {
 
     public void setState(boolean state) {
         this.state = state;
+    }
+
+    public boolean isIdRender() {
+        return this.idRender;
+    }
+
+    public boolean getIdRender() {
+        return this.idRender;
+    }
+
+    public void setIdRender(boolean idRender) {
+        this.idRender = idRender;
     }
 
 }

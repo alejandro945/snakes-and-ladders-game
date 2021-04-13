@@ -13,10 +13,8 @@ public class MatrixGrid {
         numRows = n;
         length = m * n;
         createGrid();
-        if ((s + l) < (length - 2)) {
-            createLadders(l, 0, 1);
-            createSnakes(s, 0, 'A');
-        }
+        createLadders(l, 0, 1);
+        createSnakes(s, 0, 'A');
     }
 
     public Box getFirst() {

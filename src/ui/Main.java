@@ -18,23 +18,20 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-
         MatrixGrid mg = new MatrixGrid(4, 4, 3, 3);
         mg.showMatriz();
+        launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("screens/mainPane.fxml"));
         fxmlloader.setController(gameController);
-
         Parent root = fxmlloader.load();
         Scene scene = new Scene(root);
-
         primaryStage.setScene(scene);
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
-
         gameController.welcomeToMenu();
     }
 

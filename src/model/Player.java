@@ -3,26 +3,21 @@ package model;
 import java.util.Random;
 
 public class Player {
-    // MButton controller;
-    // Board board;
-    int posRow;
-    private int posColumn;
     private Random r;
-    int number, laststep = 0;
+    private int number, laststep, position;
     private boolean completed;
-    private int turn;
     private String nickName;
     private int score;
     private int movements;
     private String tokenGame;
+    private Player nextInGame;
+    private Player nextInBox;
 
     public Player(String tokenGame) {
         this.tokenGame = tokenGame;
-        posRow = 0;
-        posColumn = 0;
-        turn = 0;
         movements = 0;
         completed = false;
+        position = 1;
         r = new Random();
     }
 
@@ -42,6 +37,22 @@ public class Player {
         this.score = score;
     }
 
+    public Player getNextInGame() {
+        return this.nextInGame;
+    }
+
+    public void setNextInGame(Player nextInGame) {
+        this.nextInGame = nextInGame;
+    }
+
+    public Player getNextInBox() {
+        return this.nextInBox;
+    }
+
+    public void setNextInBox(Player nextInBox) {
+        this.nextInBox = nextInBox;
+    }
+
     public String getTokenGame() {
         return this.tokenGame;
     }
@@ -54,47 +65,20 @@ public class Player {
         return this.movements;
     }
 
-    public void setMovements(int movements) {
-        this.movements = movements;
-    }
-
-    // public Player(Board b) {
-    // this.board = b;
-    // }
-
-    // public void setController(MButton bt) {
-    // this.controller = bt;
-    // }
-
     public void rollDice() {
         number = (1 + r.nextInt(6));
-        turn++;
+        position += number;
+        movements++;
     }
 
     public void reset() {
-        turn = 0;
+        movements = 0;
         setLaststep(0);
         reachedEnd(false);
     }
 
     public int getDiceNumber() {
         return number;
-    }
-
-    public int getRow() {
-        return posRow;
-    }
-
-    public void setRow(int posRow) {
-        this.posRow = posRow;
-    }
-
-    public int getColumn() {
-        return posColumn;
-    }
-
-    public void setColumn(int posColumn) {
-        this.posColumn = posColumn;
     }
 
     public int getLaststep() {
@@ -105,8 +89,12 @@ public class Player {
         this.laststep = laststep;
     }
 
-    public int getTurn() {
-        return turn;
+    public int getPosition() {
+        return this.position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 
     /**
