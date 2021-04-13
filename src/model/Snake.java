@@ -21,6 +21,19 @@ public class Snake {
     Paint color = Color.WHITE;
     Path path = new Path();
     int i1, i2, j1, j2;
+    private char snakeName;
+
+    public Snake(char snakeName) {
+        this.snakeName = snakeName;
+    }
+
+    public char getSnakeName() {
+        return this.snakeName;
+    }
+
+    public void setSnakeName(char snakeName) {
+        this.snakeName = snakeName;
+    }
 
     /**
      *

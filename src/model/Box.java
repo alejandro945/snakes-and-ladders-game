@@ -11,12 +11,13 @@ public class Box {
     private Ladder ladder;
     private Player player;
     private int id;
+    private boolean state;
 
-    // public Box(int row, int column, int id) { /// change order row col
-    public Box(int column, int row, int id) {
+    public Box(int row, int column, int id) {
         this.column = column;
         this.row = row;
         this.id = id;
+        state = false;
     }
 
     public int getColumn() {
@@ -80,6 +81,7 @@ public class Box {
     }
 
     public void setSnake(Snake snake) {
+        setState(true);
         this.snake = snake;
     }
 
@@ -97,6 +99,14 @@ public class Box {
 
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+    public boolean getState() {
+        return this.state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
     }
 
 }

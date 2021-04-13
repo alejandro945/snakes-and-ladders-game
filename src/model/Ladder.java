@@ -19,6 +19,19 @@ public class Ladder {
     Paint color = Color.WHITE;
     int i1, i2, j1, j2;
     Path path = new Path();
+    private int ladderNumber;
+
+    public Ladder(int ladderNumber) {
+        this.ladderNumber = ladderNumber;
+    }
+
+    public int getLadderNumber() {
+        return this.ladderNumber;
+    }
+
+    public void setLadderNumber(int ladderNumber) {
+        this.ladderNumber = ladderNumber;
+    }
 
     /**
      *

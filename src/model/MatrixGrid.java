@@ -8,11 +8,15 @@ public class MatrixGrid {
     private int numRows;
     private int length;
 
-    public MatrixGrid(int m, int n) {
+    public MatrixGrid(int m, int n, int s, int l) {
         numColumns = m;
         numRows = n;
         length = m * n;
         createGrid();
+        if ((s + l) < (length - 2)) {
+            createLadders(l, 0, 1);
+            createSnakes(s, 0, 'A');
+        }
     }
 
     public Box getFirst() {
@@ -53,7 +57,12 @@ public class MatrixGrid {
     public void createColumn(int i, int j, Box previous, Box above) {
         j++;
         if (j < numColumns) {
-            int id = (i % 2 == 0) ? previous.getId() - 1 : previous.getId() + 1;
+            int id = 0;
+            if (numRows % 2 == 0) {
+                id = (i % 2 == 0) ? previous.getId() - 1 : previous.getId() + 1;
+            } else {
+                id = (i % 2 == 0) ? previous.getId() + 1 : previous.getId() - 1;
+            }
             Box current = new Box(i, j, id);
             current.setPrevious(previous);
             previous.setNext(current);
@@ -68,28 +77,88 @@ public class MatrixGrid {
 
     public void showMatriz() {
         Box actual = first;
-        int[][] mat = new int[numRows][numColumns];
+        String[][] mat = new String[numRows][numColumns];
         for (int i = 0; i < numRows; i++) {
             Box primeroDeLinea = actual;
             for (int j = 0; j < numColumns; j++) {
                 if (actual != null) {
-                    mat[i][j] = actual.getId();
-                    if (actual.getAbove() != null) {
-                        System.out.println(actual.getAbove().getId());
+                    mat[i][j] = "\033[0m" + String.valueOf(actual.getId());
+                    if (actual.getLadder() != null) {
+                        mat[i][j] += " " + "\033[0;35m" + (actual.getLadder().getLadderNumber()) + "\033[0m";
                     }
-
+                    if (actual.getSnake() != null) {
+                        mat[i][j] += " " + "\033[0;31m" + (actual.getSnake().getSnakeName()) + "\033[0m";
+                    }
                     actual = actual.getNext();
-                } else {
-                    mat[i][j] = -1;
                 }
             }
             actual = primeroDeLinea.getBelow();
         }
 
-        for (int[] is : mat) {
+        for (String[] is : mat) {
             System.out.println(Arrays.toString(is));
         }
 
+    }
+
+    public void createSnakes(int s, int render, char snakeName) {
+        int id1 = (int) (Math.random() * (length) + 1);
+        int id2 = (int) (Math.random() * (length) + 1);
+        if (render < s) {
+            if (id1 != length && id1 - id2 > numColumns) {
+                Box snakeHead = searchBox(id1, first);
+                Box snakeTail = searchBox(id2, first);
+                Snake newSnake = new Snake(snakeName);
+                if (snakeHead != null & snakeTail != null) {
+                    snakeHead.setSnake(newSnake);
+                    snakeTail.setSnake(newSnake);
+                    char newName = (char) (snakeName + 1);
+                    createSnakes(s, render + 1, newName);
+                } else {
+                    createSnakes(s, render, snakeName);
+                }
+            } else {
+                createSnakes(s, render, snakeName);
+            }
+
+        }
+
+    }
+
+    public void createLadders(int l, int render, int ladderNumber) {
+        int id1 = (int) (Math.random() * (length) + 1);
+        int id2 = (int) (Math.random() * (length) + 1);
+        if (render < l) {
+            if (id1 != 1 && id1 - id2 > numColumns) {
+                Box ladderHead = searchBox(id1, first);
+                Box ladderTail = searchBox(id2, first);
+                Ladder newLadder = new Ladder(ladderNumber);
+                if (ladderHead != null & ladderTail != null) {
+                    ladderHead.setLadder(newLadder);
+                    ladderTail.setLadder(newLadder);
+                    int newLadderNumber = (ladderNumber + 1);
+                    createLadders(l, render + 1, newLadderNumber);
+                } else {
+                    createLadders(l, render, ladderNumber);
+                }
+            } else {
+                createLadders(l, render, ladderNumber);
+            }
+        }
+    }
+
+    public Box searchBox(int id, Box current) {
+        if (current.getId() == id && !current.getState()) {
+            return current;
+        } else if (current.getRow() % 2 == 0 && current.getNext() != null) {
+            return searchBox(id, current.getNext());
+        } else if (current.getRow() % 2 != 0 && current.getPrevious() != null) {
+            return searchBox(id, current.getPrevious());
+        } else if (current.getBelow() != null) {
+            return searchBox(id, current.getBelow());
+        } else {
+            return null;
+        }
     }
 
 }
