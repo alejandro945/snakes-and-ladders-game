@@ -12,7 +12,6 @@ public class Player {
     private String tokenGame;
     private Player nextInGame;
     private Player nextInBox;
-    private int posInBox = 0;
 
     public Player(String tokenGame) {
         this.tokenGame = tokenGame;
@@ -51,8 +50,16 @@ public class Player {
     }
 
     public void setNextInBox(Player nextInBox) {
-        setPosInBox(posInBox++);
         this.nextInBox = nextInBox;
+    }
+
+    public String getPlayersInBox(Player first, String msg) {
+        if (first.getNextInBox() != null) {
+            msg += " " + first.getNextInBox().getTokenGame();
+            return getPlayersInBox(first.getNextInBox(), msg);
+        } else {
+            return msg;
+        }
     }
 
     public String getTokenGame() {
@@ -71,6 +78,7 @@ public class Player {
         number = (1 + r.nextInt(6));
         position += number;
         movements++;
+        this.setNextInBox(null);
     }
 
     public void reset() {
@@ -113,14 +121,6 @@ public class Player {
      */
     public void reachedEnd(boolean a) {
         completed = a;
-    }
-
-    public int getPosInBox() {
-        return this.posInBox;
-    }
-
-    public void setPosInBox(int posInBox) {
-        this.posInBox = posInBox;
     }
 
 }

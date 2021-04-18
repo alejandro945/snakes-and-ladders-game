@@ -11,5 +11,8 @@
         "/home/juan/Downloads/javafx-sdk-11.0.2/lib/javafx-swt.jar",
         "/home/juan/Downloads/AnimateFX-1.2.0.jar",
         "c:\\Users\\alejo\\Desktop\\APO II\\SEMANA 6\\AnimateFX-1.2.0.jar"
+    ],
+    "java.project.sourcePaths": [
+        "src"
     ]
 }

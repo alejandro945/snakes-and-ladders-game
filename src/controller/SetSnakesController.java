@@ -24,10 +24,17 @@ public class SetSnakesController {
     public void next(MouseEvent event) {
         if (!snakesLadders.getText().isEmpty()) {
             try {
+                String[] parts = snakesLadders.getText().split(" ");
+                game.setSnakes(Integer.parseInt(parts[0]));
+                game.setLadders(Integer.parseInt(parts[1]));
+
                 gameController.setPlayers();
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (NumberFormatException nfe) {
+                // Alerta ingresar números
             }
+
         }
 
     }

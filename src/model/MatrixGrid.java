@@ -12,6 +12,7 @@ public class MatrixGrid {
         numColumns = m;
         numRows = n;
         length = m * n;
+
         createGrid();
         createLadders(l, 0, 1);
         createSnakes(s, 0, 'A');
@@ -85,10 +86,8 @@ public class MatrixGrid {
                         mat[i][j] += " " + "\033[0;35m" + (actual.getLadder().getLadderNumber()) + "\033[0m";
                     }
                     if (actual.getSnake() != null) {
-                        mat[i][j] += " " + "\033[0;31m" + (actual.getSnake().getSnakeName()) + "\033[0m";
-                    }
-                    if (actual.getPlayer() != null) {
-                        mat[i][j] += " " + actual.getPlayer().getTokenGame();
+                        mat[i][j] += " " + "\033[0;31m" + (actual.getSnake().getSnakeName()) + "\033[0m"
+                                + actual.getSnake().getB();
                     }
                     actual = actual.getNext();
                 }
@@ -102,6 +101,10 @@ public class MatrixGrid {
 
     }
 
+    public int getColor() {
+        return (int) (Math.random() * (255) + 1);
+    }
+
     public void createSnakes(int s, int render, char snakeName) {
         int id1 = (int) (Math.random() * (length) + 1);
         int id2 = (int) (Math.random() * (length) + 1);
@@ -109,10 +112,12 @@ public class MatrixGrid {
             if (id1 != length && id1 - id2 > numColumns) {
                 Box snakeHead = searchBox(id1, first);
                 Box snakeTail = searchBox(id2, first);
-                Snake newSnake = new Snake(snakeName);
+                Snake newSnake = new Snake(snakeName, getColor(), getColor(), getColor());
                 if (snakeHead != null & snakeTail != null) {
                     snakeHead.setSnake(newSnake);
                     snakeTail.setSnake(newSnake);
+                    newSnake.setHead(snakeHead);
+                    newSnake.setTail(snakeTail);
                     char newName = (char) (snakeName + 1);
                     createSnakes(s, render + 1, newName);
                 } else {
@@ -130,13 +135,15 @@ public class MatrixGrid {
         int id1 = (int) (Math.random() * (length) + 1);
         int id2 = (int) (Math.random() * (length) + 1);
         if (render < l) {
-            if (id1 != 1 && id1 - id2 > numColumns) {
+            if (id2 != 1 && id1 - id2 > numColumns) {
                 Box ladderHead = searchBox(id1, first);
                 Box ladderTail = searchBox(id2, first);
-                Ladder newLadder = new Ladder(ladderNumber);
+                Ladder newLadder = new Ladder(ladderNumber, getColor(), getColor(), getColor());
                 if (ladderHead != null & ladderTail != null) {
                     ladderHead.setLadder(newLadder);
                     ladderTail.setLadder(newLadder);
+                    newLadder.setHead(ladderHead);
+                    newLadder.setTail(ladderTail);
                     int newLadderNumber = (ladderNumber + 1);
                     createLadders(l, render + 1, newLadderNumber);
                 } else {
@@ -148,7 +155,7 @@ public class MatrixGrid {
         }
     }
 
-    public Box searchBox(int id, Box current) {
+    private Box searchBox(int id, Box current) {
         if (current.getId() == id && !current.getState()) {
             return current;
         } else if (current.getRow() % 2 == 0 && current.getNext() != null) {
@@ -162,18 +169,60 @@ public class MatrixGrid {
         }
     }
 
-    public Box searchPlayerBox(int id, Box current) {
+    private Box searchBoxOut(int id, Box current) {
         if (current.getId() == id) {
             return current;
         } else if (current.getRow() % 2 == 0 && current.getNext() != null) {
-            return searchPlayerBox(id, current.getNext());
+            return searchBoxOut(id, current.getNext());
         } else if (current.getRow() % 2 != 0 && current.getPrevious() != null) {
-            return searchPlayerBox(id, current.getPrevious());
+            return searchBoxOut(id, current.getPrevious());
         } else if (current.getBelow() != null) {
-            return searchPlayerBox(id, current.getBelow());
+            return searchBoxOut(id, current.getBelow());
         } else {
             return null;
         }
+    }
+
+    public Box boxConditions(int id, Box current) {
+        if (current.getSnake() != null) {
+            System.out.println("hp");
+            return sCondition(current, id);
+        } else if (current.getLadder() != null) {
+            System.out.println("hp");
+            return lCondition(current, id);
+        } else if (current.getId() == id) {
+            return current;
+        } else if (current.getRow() % 2 == 0 && current.getNext() != null) {
+            return searchBoxOut(id, current.getNext());
+        } else if (current.getRow() % 2 != 0 && current.getPrevious() != null) {
+            return searchBoxOut(id, current.getPrevious());
+        } else if (current.getBelow() != null) {
+            return searchBoxOut(id, current.getBelow());
+        } else {
+            return null;
+        }
+    }
+
+    public Box sCondition(Box current, int id) {
+        System.out.println(current.getSnake().getHead().getId());
+        if (current.getSnake().getHead().getId() != id) {
+            return current;
+        } else {
+            return sCondition(current, current.getSnake().getHead().getId());
+        }
+    }
+
+    public Box lCondition(Box current, int id) {
+        System.out.println(current.getLadder().getTail().getId());
+        if (current.getLadder().getTail().getId() != id) {
+            return current;
+        } else {
+            return lCondition(current, current.getLadder().getTail().getId());
+        }
+    }
+
+    public Box searchBox(int id) {
+        return searchBoxOut(id, first);
     }
 
 }

@@ -24,9 +24,14 @@ public class SetBoardController {
     void next(MouseEvent event) {
         if (!colsRows.getText().isEmpty()) {
             try {
-                gameController.setSnakes();
+                String[] parts = colsRows.getText().split(" ");
+                game.setColumns(Integer.parseInt(parts[0]));
+                game.setRows(Integer.parseInt(parts[1]));
+                gameController.setSnakes(); 
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (NumberFormatException nfe) {
+                //Alerta ingresar números
             }
         }
 

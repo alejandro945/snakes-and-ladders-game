@@ -1,48 +1,132 @@
 package model;
 
-import javafx.scene.paint.Color;
-
 public class Game {
     private Player firstPlayer;
+    private int amountPlayers;
+    private String[] chosenTokens;
+    private Player current;
     private MatrixGrid grid;
+    private int rows;
+    private int columns;
+    private int snakes;
+    private int ladders;
+
     private boolean finished;
 
-    public Game(int rows, int columns, int snakes, int ladders, int amountPlayers) {
-        this.grid = new MatrixGrid(columns, rows, snakes, ladders);
+    public Game() {
+
+    }
+
+    public void initializeGame() {
         this.finished = false;
-        firstPlayer = new Player(getPlayerToken());
-        createPlayers(amountPlayers, 1, firstPlayer);
+        grid = new MatrixGrid(columns, rows, snakes, ladders);
+        if (amountPlayers == 0) {
+            firstPlayer = new Player(chosenTokens[0]);
+            createPlayers(chosenTokens.length, 1, firstPlayer);
+        } else {
+            firstPlayer = new Player(getPlayerToken());
+            createPlayers(amountPlayers, 1, firstPlayer);
+        }
+        current = firstPlayer;
+
+    }
+
+    public void getNextPlayer(Player pCase) {
+        if (pCase.getNextInGame() != null) {
+            setCurrent(pCase.getNextInGame());
+        } else {
+            setCurrent(firstPlayer);
+        }
     }
 
     public void createPlayers(int players, int render, Player firstCurrent) {
         if (render < players) {
-            Box playerCurrentPos = grid.searchPlayerBox(firstCurrent.getPosition(), grid.getFirst());
-            setPlayersInBox(firstCurrent, playerCurrentPos);
-            Player current = new Player(getPlayerToken());
-            firstCurrent.setNextInGame(current);
-            createPlayers(players, render + 1, current);
+            Player c = null;
+            if (amountPlayers == 0) {
+                if (render == 1) {
+                    setPInBox(firstCurrent);
+                }
+                c = new Player(chosenTokens[render]);
+                setPInBox(c);
+            } else {
+                if (render == 1) {
+                    setPInBox(firstCurrent);
+                }
+                c = new Player(getPlayerToken());
+                setPInBox(c);
+            }
+            firstCurrent.setNextInGame(c);
+            createPlayers(players, render + 1, c);
+        }
+    }
+
+    private void setPInBox(Player p) {
+        Box playerCurrentPos = grid.searchBox(p.getPosition());
+        if (playerCurrentPos.getPlayer() == null) {
+            playerCurrentPos.setPlayer(p);
+        } else {
+            setPlayersInBox(p, playerCurrentPos.getPlayer());
         }
     }
 
     public String getPlayerToken() {
-        Color c = Color.color(Math.random(), Math.random(), Math.random());
-        return c.toString();
+        int redux = (int) (Math.random() * (9) + 1);
+        String token = "";
+        switch (redux) {
+        case 1:
+            token = "!";
+            break;
+        case 2:
+            token = "O";
+            break;
+        case 3:
+            token = "X";
+            break;
+        case 4:
+            token = "#";
+            break;
+        case 5:
+            token = "$";
+            break;
+        case 6:
+            token = "&";
+            break;
+        case 7:
+            token = "/";
+            break;
+        case 8:
+            token = "+";
+            break;
+        case 9:
+            token = "*";
+            break;
+        }
+        return token;
     }
 
-    public void roll(Player p) {
-        p.rollDice();
-        System.out.println(p.getPosition());
-        Box playerCurrentPos = grid.searchPlayerBox(p.getPosition(), grid.getFirst());
-        setPlayersInBox(p, playerCurrentPos);
+    public void roll() {
+        Box prev = grid.boxConditions(current.getPosition(), grid.getFirst());
+        if (current.getNextInBox() != null) {
+            prev.setPlayer(current.getNextInBox());
+        } else {
+            prev.setPlayer(null);
+        }
+        current.rollDice();
+        System.out.println(current.getPosition());
+        Box playerCurrentPos = grid.boxConditions(current.getPosition(), grid.getFirst());
+        if (playerCurrentPos.getPlayer() == null) {
+            playerCurrentPos.setPlayer(current);
+        } else {
+            setPlayersInBox(current, playerCurrentPos.getPlayer());
+        }
+
     }
 
-    public void setPlayersInBox(Player p, Box b) {
-        if (b.getPlayer() == null) {
-            b.setPlayer(p);
-        } else if (b.getPlayer().getNextInBox() == null) {
-            b.getPlayer().setNextInBox(p);
-        } else if (b.getPlayer().getNextInBox() != null) {
-            setPlayersInBox(b.getPlayer().getNextInBox(), b);
+    public void setPlayersInBox(Player p, Player firstInCase) {
+        if (firstInCase.getNextInBox() != null) {
+            setPlayersInBox(p, firstInCase.getNextInBox());
+        } else {
+            firstInCase.setNextInBox(p);
         }
 
     }
@@ -54,10 +138,6 @@ public class Game {
                 deletePlayerInBox(count + 1, pos, newCurrent);
             }
         }
-    }
-
-    public Game() {
-
     }
 
     public MatrixGrid getGrid() {
@@ -82,6 +162,62 @@ public class Game {
 
     public void setFirstPlayer(Player firstPlayer) {
         this.firstPlayer = firstPlayer;
+    }
+
+    public int getAmountPlayers() {
+        return amountPlayers;
+    }
+
+    public void setAmountPlayers(int amountPlayers) {
+        this.amountPlayers = amountPlayers;
+    }
+
+    public Player getCurrent() {
+        return this.current;
+    }
+
+    public void setCurrent(Player current) {
+        this.current = current;
+    }
+
+    public int getRows() {
+        return rows;
+    }
+
+    public void setRows(int rows) {
+        this.rows = rows;
+    }
+
+    public int getColumns() {
+        return columns;
+    }
+
+    public void setColumns(int columns) {
+        this.columns = columns;
+    }
+
+    public int getSnakes() {
+        return snakes;
+    }
+
+    public void setSnakes(int snakes) {
+        this.snakes = snakes;
+    }
+
+    public int getLadders() {
+        return ladders;
+    }
+
+    public void setLadders(int ladders) {
+        this.ladders = ladders;
+    }
+
+    public String[] getChosenTokens() {
+        return this.chosenTokens;
+    }
+
+    public void setChosenTokens(String[] chosenTokens) {
+        this.chosenTokens = chosenTokens;
     }
 
 }

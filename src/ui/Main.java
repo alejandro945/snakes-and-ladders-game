@@ -18,11 +18,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        Game g = new Game(4, 5, 3, 2, 2);
-        g.getGrid().showMatriz();
-        g.roll(g.getFirstPlayer());
-        g.getGrid().showMatriz();
-        // launch(args);
+        launch(args);
     }
 
     @Override
