@@ -70,6 +70,7 @@ public class GameController {
         fxmlLoader.setController(controller);
         Parent menu = fxmlLoader.load();
         mainPane.getChildren().setAll(menu);
+        controller.initializeBoard();
     }
 
     public void topScores() throws IOException {

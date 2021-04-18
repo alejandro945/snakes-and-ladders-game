@@ -18,8 +18,9 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        MatrixGrid mg = new MatrixGrid(4, 4, 3, 3);
-        mg.showMatriz();
+        //MatrixGrid mg = new MatrixGrid(4, 4, 3, 3);
+        //mg.showMatriz();       
+        
         launch(args);
     }
 

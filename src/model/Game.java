@@ -4,18 +4,33 @@ import javafx.scene.paint.Color;
 
 public class Game {
     private Player firstPlayer;
+    private int amountPlayers;
+
+
     private MatrixGrid grid;
+    private int rows;
+    private int columns;
+    private int snakes;
+    private int ladders;
+    
+
+
     private boolean finished;
 
-    public Game(int rows, int columns, int snakes, int ladders, int amountPlayers) {
-        this.grid = new MatrixGrid(columns, rows, snakes, ladders);
+    public Game() {
         this.finished = false;
         firstPlayer = new Player(getPlayerToken());
+        
+    }
+
+    public void initializeGame(){
+        grid = new MatrixGrid(columns, rows, snakes, ladders);
         createPlayers(amountPlayers, 1, firstPlayer);
     }
 
     public void createPlayers(int players, int render, Player firstCurrent) {
         if (render < players) {
+            System.out.println(render);
             Player current = new Player(getPlayerToken());
             firstCurrent.setNextInGame(current);
             createPlayers(players, render + 1, current);
@@ -29,7 +44,7 @@ public class Game {
 
     public void roll(Player p) {
         p.rollDice();
-        Box playerCurrentPos = grid.searchBox(p.getPosition(), grid.getFirst());
+        Box playerCurrentPos = grid.searchBox(p.getPosition());
         setPlayersInBox(p, playerCurrentPos);
     }
 
@@ -43,11 +58,7 @@ public class Game {
         }
 
     }
-
-    public Game() {
-
-    }
-
+    
     public MatrixGrid getGrid() {
         return this.grid;
     }
@@ -64,4 +75,45 @@ public class Game {
         this.finished = finished;
     }
 
+    public int getAmountPlayers() {
+        return amountPlayers;
+    }
+
+    public void setAmountPlayers(int amountPlayers) {
+        this.amountPlayers = amountPlayers;
+    }
+
+    public int getRows() {
+        return rows;
+    }
+
+    public void setRows(int rows) {
+        this.rows = rows;
+    }
+
+    public int getColumns() {
+        return columns;
+    }
+
+    public void setColumns(int columns) {
+        this.columns = columns;
+    }
+
+    public int getSnakes() {
+        return snakes;
+    }
+
+    public void setSnakes(int snakes) {
+        this.snakes = snakes;
+    }
+
+    public int getLadders() {
+        return ladders;
+    }
+
+    public void setLadders(int ladders) {
+        this.ladders = ladders;
+    }
+
+    
 }

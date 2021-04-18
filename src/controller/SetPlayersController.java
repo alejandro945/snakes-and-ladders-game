@@ -24,10 +24,18 @@ public class SetPlayersController {
     void next(MouseEvent event) {
         if (!players.getText().isEmpty()) {
             try {
-                gameController.showBoard();
+                game.setAmountPlayers(Integer.parseInt(players.getText()));
+                game.initializeGame();
+
+                game.getGrid().showMatriz();
+
+                gameController.showBoard(); // Print Matriz CLS
+
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
+            } catch (NumberFormatException nfe) {
+                // Alerta ingresar números
             }
         }
 

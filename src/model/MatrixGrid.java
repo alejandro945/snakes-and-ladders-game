@@ -12,6 +12,7 @@ public class MatrixGrid {
         numColumns = m;
         numRows = n;
         length = m * n;
+
         createGrid();
         createLadders(l, 0, 1);
         createSnakes(s, 0, 'A');
@@ -145,7 +146,22 @@ public class MatrixGrid {
         }
     }
 
-    public Box searchBox(int id, Box current) {
+    private Box searchBox(int id, Box current) {
+        if (current.getId() == id && !current.getState()) {
+            return current;
+        } else if (current.getRow() % 2 == 0 && current.getNext() != null) {
+            return searchBox(id, current.getNext());
+        } else if (current.getRow() % 2 != 0 && current.getPrevious() != null) {
+            return searchBox(id, current.getPrevious());
+        } else if (current.getBelow() != null) {
+            return searchBox(id, current.getBelow());
+        } else {
+            return null;
+        }
+    }
+
+    public Box searchBox(int id) {
+        Box current = first;
         if (current.getId() == id && !current.getState()) {
             return current;
         } else if (current.getRow() % 2 == 0 && current.getNext() != null) {
