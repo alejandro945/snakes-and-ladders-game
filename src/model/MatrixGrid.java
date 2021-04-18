@@ -87,6 +87,9 @@ public class MatrixGrid {
                     if (actual.getSnake() != null) {
                         mat[i][j] += " " + "\033[0;31m" + (actual.getSnake().getSnakeName()) + "\033[0m";
                     }
+                    if (actual.getPlayer() != null) {
+                        mat[i][j] += " " + actual.getPlayer().getTokenGame();
+                    }
                     actual = actual.getNext();
                 }
             }
@@ -154,6 +157,20 @@ public class MatrixGrid {
             return searchBox(id, current.getPrevious());
         } else if (current.getBelow() != null) {
             return searchBox(id, current.getBelow());
+        } else {
+            return null;
+        }
+    }
+
+    public Box searchPlayerBox(int id, Box current) {
+        if (current.getId() == id) {
+            return current;
+        } else if (current.getRow() % 2 == 0 && current.getNext() != null) {
+            return searchPlayerBox(id, current.getNext());
+        } else if (current.getRow() % 2 != 0 && current.getPrevious() != null) {
+            return searchPlayerBox(id, current.getPrevious());
+        } else if (current.getBelow() != null) {
+            return searchPlayerBox(id, current.getBelow());
         } else {
             return null;
         }

@@ -12,6 +12,7 @@ public class Player {
     private String tokenGame;
     private Player nextInGame;
     private Player nextInBox;
+    private int posInBox = 0;
 
     public Player(String tokenGame) {
         this.tokenGame = tokenGame;
@@ -50,6 +51,7 @@ public class Player {
     }
 
     public void setNextInBox(Player nextInBox) {
+        setPosInBox(posInBox++);
         this.nextInBox = nextInBox;
     }
 
@@ -111,6 +113,14 @@ public class Player {
      */
     public void reachedEnd(boolean a) {
         completed = a;
+    }
+
+    public int getPosInBox() {
+        return this.posInBox;
+    }
+
+    public void setPosInBox(int posInBox) {
+        this.posInBox = posInBox;
     }
 
 }

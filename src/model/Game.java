@@ -16,6 +16,8 @@ public class Game {
 
     public void createPlayers(int players, int render, Player firstCurrent) {
         if (render < players) {
+            Box playerCurrentPos = grid.searchPlayerBox(firstCurrent.getPosition(), grid.getFirst());
+            setPlayersInBox(firstCurrent, playerCurrentPos);
             Player current = new Player(getPlayerToken());
             firstCurrent.setNextInGame(current);
             createPlayers(players, render + 1, current);
@@ -29,7 +31,8 @@ public class Game {
 
     public void roll(Player p) {
         p.rollDice();
-        Box playerCurrentPos = grid.searchBox(p.getPosition(), grid.getFirst());
+        System.out.println(p.getPosition());
+        Box playerCurrentPos = grid.searchPlayerBox(p.getPosition(), grid.getFirst());
         setPlayersInBox(p, playerCurrentPos);
     }
 
@@ -42,6 +45,15 @@ public class Game {
             setPlayersInBox(b.getPlayer().getNextInBox(), b);
         }
 
+    }
+
+    public void deletePlayerInBox(int count, int pos, Player pCurrent) {
+        if (pCurrent != null) {
+            if (count < pos) {
+                Player newCurrent = pCurrent;
+                deletePlayerInBox(count + 1, pos, newCurrent);
+            }
+        }
     }
 
     public Game() {
@@ -62,6 +74,14 @@ public class Game {
 
     public void setFinished(boolean finished) {
         this.finished = finished;
+    }
+
+    public Player getFirstPlayer() {
+        return this.firstPlayer;
+    }
+
+    public void setFirstPlayer(Player firstPlayer) {
+        this.firstPlayer = firstPlayer;
     }
 
 }
