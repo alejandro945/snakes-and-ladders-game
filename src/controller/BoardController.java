@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -19,14 +20,11 @@ public class BoardController {
     private Game game;
     private int gridSize;
 
-  
-
     public BoardController(GameController gc, Game game) {
         gameController = gc;
         this.game = game;
         gridSize = game.getGrid().getLength();
 
-        
     }
 
     @FXML
@@ -45,16 +43,8 @@ public class BoardController {
     private AnchorPane anchorPane;
 
     public void initializeBoard() {
-
-        Box initialBox = game.getGrid().searchBox(1);
-
-        createBoard(initialBox, initialBox.getId());
-
-        boxStyle(grid, 0, gridSize);
+        setBoard();
         playerToLaunch.setText("Turn for Player: " + game.getFirstPlayer().getTokenGame());
-
-/*         Image i = new Image(getClass().getResourceAsStream("/ui/assets/img/dice-1.png")); // Revisar porque no carga la imagen        
-        diceImage.setImage(i);     */    
     }
 
     @FXML
@@ -62,15 +52,26 @@ public class BoardController {
         game.roll();
         diceImg(game.getCurrent().getDiceNumber());
         setBoard();
-        game.getNextPlayer(game.getCurrent());
         if (!game.getFinished()) {
+            game.getNextPlayer(game.getCurrent());
             playerToLaunch.setText("Turn for Player: " + game.getCurrent().getTokenGame());
+        } else {
+            gameController.alert(AlertType.WARNING, "Warning", "The player: " + game.getCurrent().getTokenGame()
+                    + " have reached end with " + game.getCurrent().getMovements() + " movements");
+            gameController.modal();
+            game.setScore();
         }
+    }
+
+    private void setBoard() {
+        grid.getChildren().clear();
+        Box initialBox = game.getGrid().searchBox(1);
+        createBoard(initialBox, initialBox.getId());
+        boxStyle(grid, 0, gridSize);
     }
 
     private void diceImg(int diceRender) {
         Image i = null;
-        System.out.println(diceRender);
         switch (diceRender) {
         case 1:
             i = new Image(getClass().getResourceAsStream("/ui/assets/img/1.png"));
@@ -100,7 +101,7 @@ public class BoardController {
     }
 
     private GridPane createBoard(Box box, int n) {
-        if (n <= gridSize) { // + 1
+        if (n <= gridSize) {
             GridPane temp = createBoxes(n, box);
 
             grid.add(temp, box.getColumn(), box.getRow());
@@ -110,15 +111,6 @@ public class BoardController {
             return createBoard(box, n);
         }
         return grid;
-    }
-
-    private void setBoard() {
-        grid.getChildren().clear();
-        Box initialBox = game.getGrid().searchBox(1);
-
-        createBoard(initialBox, initialBox.getId());
-
-        boxStyle(grid, 0, gridSize);
     }
 
     private GridPane createBoxes(int n, Box box) {
@@ -132,18 +124,13 @@ public class BoardController {
 
         if (!isEmpty(box.getSnake())) {
             boxInfill.setStyle("-fx-background-color: rgb(" + box.getSnake().getR() + "," + box.getSnake().getG() + ","
-                    + box.getSnake().getB() + ")" + ";-fx-border-color: gray");
+                    + box.getSnake().getB() + ")" + ";-fx-border-color: gray;" + labelStyling());
         } else if (!isEmpty(box.getLadder())) {
             boxInfill.setStyle("-fx-background-color: rgb(" + box.getLadder().getR() + "," + box.getLadder().getG()
-                    + "," + box.getLadder().getB() + ")" + ";-fx-border-color: gray");
+                    + "," + box.getLadder().getB() + ")" + ";-fx-border-color: gray;" + labelStyling());
         } else {
-            boxInfill.setStyle("-fx-border-color: gray");
+            boxInfill.setStyle("-fx-border-color: gray;" + labelStyling());
         }
-
-        labelStyling(snake);
-        labelStyling(ladder);
-        labelStyling(players);
-        labelStyling(id);
 
         boxInfill.add(snake, 2, 2);
         boxInfill.add(players, 1, 1);
@@ -168,11 +155,8 @@ public class BoardController {
         }
     }
 
-    private void labelStyling(Label label){
-        label.setStyle("-fx-font-family: Ubuntu" );
-        label.setStyle("fx-font-weight: bold" );
-        label.setStyle("-fx-font-size:12px" );
-    
+    private String labelStyling() {
+        return ("-fx-font-size:12px;") + ("-fx-font-weight: bold;") + "-fx-font-family: \"Ubuntu\"";
     }
 
     private boolean isEmpty(Object object) {

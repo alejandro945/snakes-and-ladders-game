@@ -21,10 +21,10 @@ public class Game {
         this.finished = false;
         grid = new MatrixGrid(columns, rows, snakes, ladders);
         if (amountPlayers == 0) {
-            firstPlayer = new Player(chosenTokens[0]);
+            firstPlayer = new Player(chosenTokens[0], grid.getLength());
             createPlayers(chosenTokens.length, 1, firstPlayer);
         } else {
-            firstPlayer = new Player(getPlayerToken());
+            firstPlayer = new Player(getPlayerToken(), grid.getLength());
             createPlayers(amountPlayers, 1, firstPlayer);
         }
         current = firstPlayer;
@@ -39,6 +39,11 @@ public class Game {
         }
     }
 
+    public void setScore() {
+        int s = current.getMovements() * grid.getLength();
+        current.setScore(s);
+    }
+
     public void createPlayers(int players, int render, Player firstCurrent) {
         if (render < players) {
             Player c = null;
@@ -46,13 +51,13 @@ public class Game {
                 if (render == 1) {
                     setPInBox(firstCurrent);
                 }
-                c = new Player(chosenTokens[render]);
+                c = new Player(chosenTokens[render], grid.getLength());
                 setPInBox(c);
             } else {
                 if (render == 1) {
                     setPInBox(firstCurrent);
                 }
-                c = new Player(getPlayerToken());
+                c = new Player(getPlayerToken(), grid.getLength());
                 setPInBox(c);
             }
             firstCurrent.setNextInGame(c);
@@ -60,19 +65,16 @@ public class Game {
         }
     }
 
-    /* public void createPlayerGiven(int i, String tokens, Player actual, int n) {
-        String[] temp = tokens.split(" ");
-        Player c = actual;
-
-        if (i < n) {         
-            
-            c.setTokenGame(temp[i]);
-            setPInBox(c);
-            c = c.getNextInGame();
-        }
-
-        createPlayerGiven(i + 1, tokens, c, );
-    } */
+    /*
+     * public void createPlayerGiven(int i, String tokens, Player actual, int n) {
+     * String[] temp = tokens.split(" "); Player c = actual;
+     * 
+     * if (i < n) {
+     * 
+     * c.setTokenGame(temp[i]); setPInBox(c); c = c.getNextInGame(); }
+     * 
+     * createPlayerGiven(i + 1, tokens, c, ); }
+     */
 
     private void setPInBox(Player p) {
         Box playerCurrentPos = grid.searchBox(p.getPosition());
@@ -118,22 +120,31 @@ public class Game {
         return token;
     }
 
-    public void roll() {
-        Box prev = grid.boxConditions(current.getPosition(), grid.getFirst());
+    private void setpreviousBox(Box prev) {
         if (current.getNextInBox() != null) {
             prev.setPlayer(current.getNextInBox());
         } else {
             prev.setPlayer(null);
         }
+    }
+
+    public void roll() {
+        Box prevBox1 = grid.searchBox(current.getPosition());
+        Box prev = grid.validateBox(prevBox1);
+        setpreviousBox(prev);
         current.rollDice();
-        System.out.println(current.getPosition());
-        Box playerCurrentPos = grid.boxConditions(current.getPosition(), grid.getFirst());
+        Box prevBox2 = grid.searchBox(current.getPosition());
+        Box playerCurrentPos = grid.validateBox(prevBox2);
         if (playerCurrentPos.getPlayer() == null) {
             playerCurrentPos.setPlayer(current);
+            current.setPosition(playerCurrentPos.getId());
         } else {
             setPlayersInBox(current, playerCurrentPos.getPlayer());
+            current.setPosition(playerCurrentPos.getId());
         }
-
+        if (current.hasReachedEnd()) {
+            setFinished(true);
+        }
     }
 
     public void setPlayersInBox(Player p, Player firstInCase) {
@@ -141,16 +152,6 @@ public class Game {
             setPlayersInBox(p, firstInCase.getNextInBox());
         } else {
             firstInCase.setNextInBox(p);
-        }
-
-    }
-
-    public void deletePlayerInBox(int count, int pos, Player pCurrent) {
-        if (pCurrent != null) {
-            if (count < pos) {
-                Player newCurrent = pCurrent;
-                deletePlayerInBox(count + 1, pos, newCurrent);
-            }
         }
     }
 
@@ -224,14 +225,6 @@ public class Game {
 
     public void setLadders(int ladders) {
         this.ladders = ladders;
-    }
-
-    public String[] getChosenTokens() {
-        return this.chosenTokens;
-    }
-
-    public void setChosenTokens(String[] chosenTokens) {
-        this.chosenTokens = chosenTokens;
     }
 
 }

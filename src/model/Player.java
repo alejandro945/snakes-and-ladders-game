@@ -13,11 +13,12 @@ public class Player {
     private Player nextInGame;
     private Player nextInBox;
 
-    public Player(String tokenGame) {
+    public Player(String tokenGame, int laststep) {
         this.tokenGame = tokenGame;
         movements = 0;
         completed = false;
         position = 1;
+        this.laststep = laststep;
         r = new Random();
     }
 
@@ -76,9 +77,19 @@ public class Player {
 
     public void rollDice() {
         number = (1 + r.nextInt(6));
-        position += number;
+        int result = position + number;
+        isWinner(result);
         movements++;
         this.setNextInBox(null);
+    }
+
+    public void isWinner(int result) {
+        if (result == laststep) {
+            completed = true;
+            position += number;
+        } else if (result <= laststep) {
+            position += number;
+        }
     }
 
     public void reset() {
@@ -104,6 +115,7 @@ public class Player {
     }
 
     public void setPosition(int position) {
+        isWinner(0);
         this.position = position;
     }
 

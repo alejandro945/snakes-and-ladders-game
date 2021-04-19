@@ -29,8 +29,6 @@ public class SetPlayersController {
                 game.setAmountPlayers(Integer.parseInt(players.getText()));
                 game.initializeGame();
 
-                game.getGrid().showMatriz();// Print Matriz CLS
-
                 gameController.showBoard();
 
             } catch (IOException e) {
@@ -56,14 +54,11 @@ public class SetPlayersController {
                 game.setAmountPlayers(Integer.parseInt(players.getText()));
                 game.initializeGame();
 
-                game.getGrid().showMatriz();// Print Matriz CLS
-
                 gameController.showBoard();
 
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
-                gameController.alert( AlertType.ERROR, "Error", "Fail to load the board");
+                gameController.alert(AlertType.ERROR, "Error", "Fail to load the board");
             } catch (NumberFormatException nfe) {
                 gameController.alert(AlertType.ERROR, "Error", "Please insert only numbers");
             }

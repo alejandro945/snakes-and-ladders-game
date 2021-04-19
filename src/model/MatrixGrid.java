@@ -74,35 +74,8 @@ public class MatrixGrid {
         }
     }
 
-    public void showMatriz() {
-        Box actual = first;
-        String[][] mat = new String[numRows][numColumns];
-        for (int i = 0; i < numRows; i++) {
-            Box primeroDeLinea = actual;
-            for (int j = 0; j < numColumns; j++) {
-                if (actual != null) {
-                    mat[i][j] = "\033[0m" + String.valueOf(actual.getId());
-                    if (actual.getLadder() != null) {
-                        mat[i][j] += " " + "\033[0;35m" + (actual.getLadder().getLadderNumber()) + "\033[0m";
-                    }
-                    if (actual.getSnake() != null) {
-                        mat[i][j] += " " + "\033[0;31m" + (actual.getSnake().getSnakeName()) + "\033[0m"
-                                + actual.getSnake().getB();
-                    }
-                    actual = actual.getNext();
-                }
-            }
-            actual = primeroDeLinea.getBelow();
-        }
-
-        for (String[] is : mat) {
-            System.out.println(Arrays.toString(is));
-        }
-
-    }
-
     public int getColor() {
-        return (int) (Math.random() * (255) + 1);
+        return (int) (Math.random() * (255) + 150);
     }
 
     public void createSnakes(int s, int render, char snakeName) {
@@ -183,41 +156,29 @@ public class MatrixGrid {
         }
     }
 
-    public Box boxConditions(int id, Box current) {
+    public Box validateBox(Box current) {
         if (current.getSnake() != null) {
-            System.out.println("hp");
-            return sCondition(current, id);
+            return sCondition(current, current.getId());
         } else if (current.getLadder() != null) {
-            System.out.println("hp");
-            return lCondition(current, id);
-        } else if (current.getId() == id) {
-            return current;
-        } else if (current.getRow() % 2 == 0 && current.getNext() != null) {
-            return searchBoxOut(id, current.getNext());
-        } else if (current.getRow() % 2 != 0 && current.getPrevious() != null) {
-            return searchBoxOut(id, current.getPrevious());
-        } else if (current.getBelow() != null) {
-            return searchBoxOut(id, current.getBelow());
+            return lCondition(current, current.getId());
         } else {
-            return null;
+            return current;
         }
     }
 
     public Box sCondition(Box current, int id) {
-        System.out.println(current.getSnake().getHead().getId());
-        if (current.getSnake().getHead().getId() != id) {
-            return current;
+        if (current.getSnake().getHead().getId() == id) {
+            return current.getSnake().getTail();
         } else {
-            return sCondition(current, current.getSnake().getHead().getId());
+            return current;
         }
     }
 
-    public Box lCondition(Box current, int id) {  /// Marco un detalle
-        System.out.println(current.getLadder().getTail().getId());
-        if (current.getLadder().getTail().getId() != id) {
-            return current;
+    public Box lCondition(Box current, int id) {
+        if (current.getLadder().getTail().getId() == id) {
+            return current.getLadder().getHead();
         } else {
-            return lCondition(current, current.getLadder().getTail().getId());
+            return current;
         }
     }
 

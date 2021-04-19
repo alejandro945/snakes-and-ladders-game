@@ -1,12 +1,14 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 import model.*;
@@ -110,7 +112,6 @@ public class GameController {
         mainPane.getChildren().setAll(menu);
         controller.HowVisible();
 
-
     }
 
     @FXML
@@ -142,5 +143,17 @@ public class GameController {
         alert.setContentText(message);
 
         alert.showAndWait();
+    }
+
+    public void modal() {
+        TextInputDialog dialog = new TextInputDialog("walter");
+        dialog.setTitle("Text Input Dialog");
+        dialog.setHeaderText("Look, a Text Input Dialog");
+        dialog.setContentText("Please enter your nickname:");
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()) {
+            game.getCurrent().setNickName(result.get());
+            System.out.println("Your name: " + result.get());
+        }
     }
 }
