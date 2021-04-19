@@ -212,7 +212,7 @@ public class MatrixGrid {
         }
     }
 
-    public Box lCondition(Box current, int id) {
+    public Box lCondition(Box current, int id) {  /// Marco un detalle
         System.out.println(current.getLadder().getTail().getId());
         if (current.getLadder().getTail().getId() != id) {
             return current;

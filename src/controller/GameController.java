@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 import model.*;
 
@@ -14,7 +16,6 @@ public class GameController {
     private Pane mainPane;
 
     private Game game;
-     
 
     public GameController(Game game) {
         this.game = game;
@@ -25,7 +26,7 @@ public class GameController {
     public void welcomeToMenu() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/screens/menu.fxml"));
 
-        MenuController controller =  new MenuController(this, game);
+        MenuController controller = new MenuController(this, game);
 
         fxmlLoader.setController(controller);
         Parent menu = fxmlLoader.load();
@@ -83,7 +84,7 @@ public class GameController {
         mainPane.getChildren().setAll(menu);
     }
 
-    //Menu bar actions
+    // Menu bar actions
     @FXML
     public void menu(ActionEvent event) {
         try {
@@ -100,17 +101,46 @@ public class GameController {
     }
 
     @FXML
-    public void howToPlay(ActionEvent event) {
+    public void howToPlay(ActionEvent event) throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/screens/help.fxml"));
+        HelpController controller = new HelpController();
+        fxmlLoader.setController(controller);
+        Parent menu = fxmlLoader.load();
+        mainPane.getChildren().setAll(menu);
+        controller.HowVisible();
+
 
     }
 
     @FXML
-    public void rules(ActionEvent event) {
-
+    public void rules(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/screens/help.fxml"));
+        HelpController controller = new HelpController();
+        fxmlLoader.setController(controller);
+        Parent menu = fxmlLoader.load();
+        mainPane.getChildren().setAll(menu);
+        controller.rulesVisible();
     }
 
     @FXML
-    public void about(ActionEvent event) {
+    public void about(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/screens/help.fxml"));
+        HelpController controller = new HelpController();
+        fxmlLoader.setController(controller);
+        Parent menu = fxmlLoader.load();
+        mainPane.getChildren().setAll(menu);
+        controller.aboutVisible();
+    }
 
+    // --------------------------- Alerts
+
+    public void alert(AlertType type, String title, String message) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+
+        alert.showAndWait();
     }
 }

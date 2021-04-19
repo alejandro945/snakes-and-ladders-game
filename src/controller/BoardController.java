@@ -5,14 +5,12 @@ import model.*;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
-import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
-import javafx.scene.shape.Line;
 import javafx.event.ActionEvent;
 
 public class BoardController {
@@ -21,10 +19,14 @@ public class BoardController {
     private Game game;
     private int gridSize;
 
+  
+
     public BoardController(GameController gc, Game game) {
         gameController = gc;
         this.game = game;
         gridSize = game.getGrid().getLength();
+
+        
     }
 
     @FXML
@@ -50,6 +52,9 @@ public class BoardController {
 
         boxStyle(grid, 0, gridSize);
         playerToLaunch.setText("Turn for Player: " + game.getFirstPlayer().getTokenGame());
+
+/*         Image i = new Image(getClass().getResourceAsStream("/ui/assets/img/dice-1.png")); // Revisar porque no carga la imagen        
+        diceImage.setImage(i);     */    
     }
 
     @FXML
@@ -65,29 +70,30 @@ public class BoardController {
 
     private void diceImg(int diceRender) {
         Image i = null;
+        System.out.println(diceRender);
         switch (diceRender) {
         case 1:
-            i = new Image(getClass().getResourceAsStream("/ui/assets/img/dice-1.PNG"));
+            i = new Image(getClass().getResourceAsStream("/ui/assets/img/1.png"));
             diceImage.setImage(i);
             break;
         case 2:
-            i = new Image(getClass().getResourceAsStream("/ui/assets/img/dice-2.JPG"));
+            i = new Image(getClass().getResourceAsStream("/ui/assets/img/2.jpg"));
             diceImage.setImage(i);
             break;
         case 3:
-            i = new Image(getClass().getResourceAsStream("/ui/assets/img/dice-3.JPG"));
+            i = new Image(getClass().getResourceAsStream("/ui/assets/img/3.jpg"));
             diceImage.setImage(i);
             break;
         case 4:
-            i = new Image(getClass().getResourceAsStream("/ui/assets/img/dice-4.PNG"));
+            i = new Image(getClass().getResourceAsStream("/ui/assets/img/4.png"));
             diceImage.setImage(i);
             break;
         case 5:
-            i = new Image(getClass().getResourceAsStream("/ui/assets/img/dice-5.PNG"));
+            i = new Image(getClass().getResourceAsStream("/ui/assets/img/5.png"));
             diceImage.setImage(i);
             break;
         case 6:
-            i = new Image(getClass().getResourceAsStream("/ui/assets/img/dice-6.PNG"));
+            i = new Image(getClass().getResourceAsStream("/ui/assets/img/6.png"));
             diceImage.setImage(i);
             break;
         }
@@ -121,7 +127,9 @@ public class BoardController {
         Label players = (isEmpty(box.getPlayer())) ? new Label("")
                 : new Label(box.getPlayer().getPlayersInBox(box.getPlayer(), box.getPlayer().getTokenGame()));
         Label id = (isEmpty(box)) ? new Label("") : new Label(box.getId() + "");
+
         GridPane boxInfill = new GridPane();
+
         if (!isEmpty(box.getSnake())) {
             boxInfill.setStyle("-fx-background-color: rgb(" + box.getSnake().getR() + "," + box.getSnake().getG() + ","
                     + box.getSnake().getB() + ")" + ";-fx-border-color: gray");
@@ -131,6 +139,12 @@ public class BoardController {
         } else {
             boxInfill.setStyle("-fx-border-color: gray");
         }
+
+        labelStyling(snake);
+        labelStyling(ladder);
+        labelStyling(players);
+        labelStyling(id);
+
         boxInfill.add(snake, 2, 2);
         boxInfill.add(players, 1, 1);
         boxInfill.add(id, 0, 2);
@@ -148,9 +162,17 @@ public class BoardController {
             GridPane.setVgrow(gP.getChildren().get(n), Priority.ALWAYS);
             GridPane.setHalignment(gP.getChildren().get(n), HPos.CENTER);
             GridPane.setValignment(gP.getChildren().get(n), VPos.CENTER);
+
             n++;
             boxStyle(gP, n, i);
         }
+    }
+
+    private void labelStyling(Label label){
+        label.setStyle("-fx-font-family: Ubuntu" );
+        label.setStyle("fx-font-weight: bold" );
+        label.setStyle("-fx-font-size:12px" );
+    
     }
 
     private boolean isEmpty(Object object) {

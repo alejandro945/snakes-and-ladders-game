@@ -3,7 +3,7 @@ package model;
 public class Game {
     private Player firstPlayer;
     private int amountPlayers;
-    private String[] chosenTokens;
+    private String[] chosenTokens; ///
     private Player current;
     private MatrixGrid grid;
     private int rows;
@@ -59,6 +59,20 @@ public class Game {
             createPlayers(players, render + 1, c);
         }
     }
+
+    /* public void createPlayerGiven(int i, String tokens, Player actual, int n) {
+        String[] temp = tokens.split(" ");
+        Player c = actual;
+
+        if (i < n) {         
+            
+            c.setTokenGame(temp[i]);
+            setPInBox(c);
+            c = c.getNextInGame();
+        }
+
+        createPlayerGiven(i + 1, tokens, c, );
+    } */
 
     private void setPInBox(Player p) {
         Box playerCurrentPos = grid.searchBox(p.getPosition());
