@@ -29,14 +29,12 @@ public class SetPlayersController {
                 game.setChosenTokens(players.getText());
                 game.setAmountPlayers(players.getText().split(" ").length);
                 game.initializeGame();
-
                 gameController.showBoard();
-
             } catch (IOException e) {
                 e.printStackTrace();
-            } catch (NumberFormatException nfe) {
-                // Alerta ingresar números
             }
+        } else {
+            gameController.alert(AlertType.WARNING, "Warning", "Please complete the field");
         }
 
     }

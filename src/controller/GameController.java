@@ -143,16 +143,18 @@ public class GameController {
 
         alert.showAndWait();
     }
-//--------------------------------Modal
-    public void modal() {
-        TextInputDialog dialog = new TextInputDialog("walter");
+
+    // --------------------------------Modal---------------------------------------------
+    public void modal() throws IOException {
+        TextInputDialog dialog = new TextInputDialog("");
         dialog.setTitle("Text Input Dialog");
         dialog.setHeaderText("Look, a Text Input Dialog");
         dialog.setContentText("Please enter your nickname:");
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()) {
             game.getCurrent().setNickName(result.get());
-            System.out.println("Your name: " + result.get());
+            alert(AlertType.INFORMATION, "Success", "Player ninckname set sucesffully");
+            welcomeToMenu();
         }
     }
 }

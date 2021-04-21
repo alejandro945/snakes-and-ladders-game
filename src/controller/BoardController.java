@@ -2,6 +2,10 @@ package controller;
 
 import model.*;
 
+import java.io.IOException;
+
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
@@ -12,7 +16,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
-import javafx.event.ActionEvent;
 
 public class BoardController {
 
@@ -48,7 +51,11 @@ public class BoardController {
     }
 
     @FXML
-    void launchDice(ActionEvent event) {
+    public void launchDice(ActionEvent event) throws IOException {
+        roll();
+    }
+
+    private void roll() throws IOException {
         game.roll();
         diceImg(game.getCurrent().getDiceNumber());
         resume.setText(movementResume());
@@ -60,8 +67,13 @@ public class BoardController {
             gameController.alert(AlertType.WARNING, "Warning", "The player: " + game.getCurrent().getTokenGame()
                     + " have reached end with " + game.getCurrent().getMovements() + " movements");
             gameController.modal();
-            game.setScore();
+            game.setWinnerScore();
         }
+    }
+
+    @FXML
+    void simulGame(ActionEvent event) throws IOException, InterruptedException {
+        simulGame();
     }
 
     private String movementResume() {
@@ -172,4 +184,31 @@ public class BoardController {
             return false;
         }
     }
+
+    public void simulGame() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if (!game.getFinished()) {
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                roll();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                        }
+                    });
+                    simulGame();
+                }
+            }
+        }).start();
+    }
+
 }

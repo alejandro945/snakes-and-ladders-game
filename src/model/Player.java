@@ -120,7 +120,7 @@ public class Player {
     }
 
     public void setPosition(int position) {
-        isWinner(0);
+        isWinner(position);
         this.position = position;
     }
 
@@ -158,19 +158,7 @@ public class Player {
     }
 
     public void insertNode(Player newPNode) {
-        if (newPNode.getScore() <= this.getScore()) {
-            if (left == null) {
-                left = newPNode;
-            } else {
-                left.insertNode(newPNode);
-            }
-        } else if (newPNode.getScore() >= this.getScore()) {
-            if (right == null) {
-                right = newPNode;
-            } else {
-                right.insertNode(newPNode);
-            }
-        }
+
     }
 
 }

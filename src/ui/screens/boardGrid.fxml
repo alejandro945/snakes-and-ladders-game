@@ -34,15 +34,20 @@
                         <Font name="System Bold" size="21.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="15.0" />
+                        <Insets bottom="5.0" />
                      </VBox.margin>
                   </Label>
+                  <Button mnemonicParsing="false" onAction="#simulGame" prefHeight="32.0" prefWidth="111.0" styleClass="buttonAlejo" stylesheets="@../assets/styles/styles.css" text="Simulate">
+                     <VBox.margin>
+                        <Insets bottom="8.0" />
+                     </VBox.margin>
+                  </Button>
                   <Separator prefWidth="200.0">
                      <VBox.margin>
                         <Insets bottom="15.0" left="10.0" right="10.0" />
                      </VBox.margin>
                   </Separator>
-                  <Label prefHeight="38.0" prefWidth="98.0" text="Player to launch:" textAlignment="CENTER" wrapText="true">
+                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="98.0" text="Player to launch:" textAlignment="CENTER" wrapText="true">
                      <VBox.margin>
                         <Insets bottom="15.0" />
                      </VBox.margin>
@@ -55,7 +60,7 @@
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" onAction="#launchDice" styleClass="buttonLaunch" stylesheets="@../assets/styles/styles.css" text="Launch">
+                  <Button mnemonicParsing="false" onAction="#launchDice" prefHeight="31.0" prefWidth="74.0" styleClass="buttonLaunch" stylesheets="@../assets/styles/styles.css" text="Launch">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -71,10 +76,10 @@
                   </Separator>
                   <Label alignment="CENTER" prefHeight="37.0" prefWidth="114.0" text="Move resume:" wrapText="true">
                      <VBox.margin>
-                        <Insets bottom="15.0" />
+                        <Insets bottom="8.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="resume" prefHeight="73.0" prefWidth="115.0" text="Movements" wrapText="true" />
+                  <Label fx:id="resume" prefHeight="118.0" prefWidth="115.0" text="Movements" wrapText="true" />
                </children>
             </VBox>
          </children>

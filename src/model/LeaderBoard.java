@@ -1,6 +1,7 @@
 package model;
 
 public class LeaderBoard {
+
     private Player root;
 
     public LeaderBoard() {
@@ -24,7 +25,23 @@ public class LeaderBoard {
         if (root == null) {
             root = newPNode;
         } else {
-            root.insertNode(newPNode);
+            insertNode(root, newPNode);
+        }
+    }
+
+    private void insertNode(Player parent, Player newPlayer) {
+        if (newPlayer.getScore() >= parent.getScore()) {
+            if (parent.getLeft() == null) {
+                parent.setLeft(newPlayer);
+            } else {
+                insertNode(parent.getLeft(), newPlayer);
+            }
+        } else {
+            if (parent.getRight() == null) {
+                parent.setRight(newPlayer);
+            } else {
+                insertNode(parent.getRight(), newPlayer);
+            }
         }
     }
 

@@ -26,10 +26,10 @@ public class SetBoardController {
         if (!colsRows.getText().isEmpty()) {
             try {
                 String[] parts = colsRows.getText().split(" ");
-
-                if (Integer.parseInt(parts[0]) >= 15 || Integer.parseInt(parts[1]) >= 10) {
+                int maxGrid = 60;
+                if ((Integer.parseInt(parts[0])) * (Integer.parseInt(parts[1])) > maxGrid) {
                     gameController.alert(AlertType.WARNING, "Warning",
-                            "The matriz out of boundaries, create a matriz smaller than 15x10");
+                            "The matriz out of boundaries, create a matriz smaller than 60 cells");
 
                 } else if (Integer.parseInt(parts[0]) <= 1 && Integer.parseInt(parts[1]) <= 1) {
                     gameController.alert(AlertType.WARNING, "Warning",

@@ -1,9 +1,10 @@
 package model;
 
 public class Game {
+    private LeaderBoard topScore;
     private Player firstPlayer;
     private int amountPlayers;
-    private String chosenTokens; ///
+    private String chosenTokens;
     private Player current;
     private MatrixGrid grid;
     private int rows;
@@ -14,16 +15,19 @@ public class Game {
     private boolean finished;
 
     public Game() {
-
+        topScore = new LeaderBoard();
     }
 
     public void initializeGame() {
+
         this.finished = false;
         grid = new MatrixGrid(columns, rows, snakes, ladders);
+
         if (!chosenTokens.equals("")) {
             createPlayerGiven(0, chosenTokens, null);
         } else {
             firstPlayer = new Player(getPlayerToken(), grid.getLength());
+            setPInBox(firstPlayer);
             createPlayers(amountPlayers, 1, firstPlayer);
         }
         current = firstPlayer;
@@ -34,11 +38,11 @@ public class Game {
             return randomToken;
         } else {
             if (current.getNextInGame() != null && !current.getTokenGame().equals(randomToken)) {
-                return tokenValidation(current.getNextInGame(), randomToken, true);
+                return tokenValidation(current.getNextInGame(), randomToken, found);
             } else if (current.getNextInGame() == null && !current.getTokenGame().equals(randomToken)) {
                 return tokenValidation(current, randomToken, false);
             } else {
-                return tokenValidation(firstPlayer, getPlayerToken(), true);
+                return tokenValidation(firstPlayer, getPlayerToken(), found);
             }
         }
     }
@@ -51,16 +55,18 @@ public class Game {
         }
     }
 
-    public void setScore() {
+    public void setWinnerScore() {
         int s = current.getMovements() * grid.getLength();
         current.setScore(s);
+        topScore.insertNode(current);
+        topScore.printInorden();
     }
 
     public void createPlayers(int players, int render, Player firstCurrent) {
         if (render < players) {
             Player c = null;
             if (render == 1) {
-                setPInBox(firstCurrent);
+                // setPInBox(firstCurrent);
             }
             c = new Player(tokenValidation(firstPlayer, getPlayerToken(), true), grid.getLength());
             setPInBox(c);
@@ -74,11 +80,11 @@ public class Game {
         if (render < amountPlayers) {
             if (actual == null) {
                 firstPlayer = new Player(temp[render], grid.getLength());
-                setPInBox(actual);
+                setPInBox(firstPlayer);
                 createPlayerGiven(render + 1, tokens, firstPlayer);
             } else {
                 Player p = new Player(tokenValidation(actual, temp[render], true), grid.getLength());
-                setPInBox(actual);
+                setPInBox(p);
                 actual.setNextInGame(p);
                 createPlayerGiven(render + 1, tokens, p);
             }
