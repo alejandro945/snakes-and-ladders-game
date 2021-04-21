@@ -29,12 +29,12 @@ public class Game {
             // firstPlayer = new Player(chosenTokens[0], grid.getLength());
             // createPlayers(chosenTokens.length, 1, firstPlayer, 9);
         } else {
-            Symbol token = randomSymbol(8);
-            token.getBefore().setNext(token.getNext());
-            token.getNext().setBefore(token.getBefore());
+            // Symbol token = randomSymbol(8);
+            // token.getBefore().setNext(token.getNext());
+            // token.getNext().setBefore(token.getBefore());
 
-            firstPlayer = new Player(token.getValue(), grid.getLength());
-            createPlayers(amountPlayers, 1, firstPlayer, 7);
+            firstPlayer = new Player(getPlayerToken(), grid.getLength());
+            createPlayers(amountPlayers, 1, firstPlayer, 7, 1);
         }
         current = firstPlayer;
 
@@ -89,37 +89,29 @@ public class Game {
         return getTokenByNum(redux, 0, firstToken);
     }
 
-    private boolean tokenValidation(Player player, Player other, int n, boolean ok) {
+    private boolean tokenValidation(Player player, Player other, int n, boolean ok, int created) {
 
-        if (other == null) {
-            other = firstPlayer;
-        }
-
-        if (n < amountPlayers) {
-            if (player.getTokenGame().equals(other.getTokenGame())) {
-
-                return false;
-            } else {
+        if (n == created) {
+            return true;
+        } else {
+            if (!player.getTokenGame().equals(other.getTokenGame())) {
                 other = other.getNextInGame();
                 n++;
-                tokenValidation(player, other, n, ok);
+                tokenValidation(player, other, n, ok, created);
+            } else {
+                ok = false;
+                
             }
-        } else {
-            ok = true;
-            return true;
         }
-
         return ok;
-
     }
 
-    private void tokenIteration(Player player) {
-        if (player.getNextInGame() != null) {
-            if (!tokenValidation(player, player.getNextInGame(), 0, false)) {
-                System.out.println(tokenValidation(player, player.getNextInGame(), 0, false));
-                player.setTokenGame(getPlayerToken());
-                tokenIteration(player);
-            }
+    private void tokenIteration(Player player, int created) {
+
+        if (!tokenValidation(player, firstPlayer, 0, false, created)) {
+            System.out.println(tokenValidation(player, firstPlayer, 0, false, created));
+            player.setTokenGame(getPlayerToken());
+            tokenIteration(player, created);
         }
     }
 
@@ -136,7 +128,7 @@ public class Game {
         current.setScore(s);
     }
 
-    public void createPlayers(int players, int render, Player firstCurrent, int spots) {
+    public void createPlayers(int players, int render, Player firstCurrent, int spots, int created) {
         if (render < players) {
             Player c = null;
             if (amountPlayers == 0) {
@@ -145,11 +137,14 @@ public class Game {
                 }
                 // c = new Player(chosenTokens[render], grid.getLength());
 
-                Symbol token = randomSymbol(spots);
-                token.getBefore().setNext(token.getNext());
-                token.getNext().setBefore(token.getBefore());
+                // Symbol token = randomSymbol(spots);
+                // token.getBefore().setNext(token.getNext());
+                // token.getNext().setBefore(token.getBefore());
 
-                c = new Player(token.getValue(), grid.getLength());
+                // c = new Player(token.getValue(), grid.getLength());
+                c = new Player(getPlayerToken(), grid.getLength());
+                tokenIteration(c, created);
+                created++;
                 spots--;
                 setPInBox(c);
             } else {
@@ -158,18 +153,20 @@ public class Game {
                 }
                 // c = new Player(getPlayerToken(), grid.getLength());
 
-                //c.tokenIteration()
+                // Symbol token = randomSymbol(spots);
+                // token.getBefore().setNext(token.getNext());
+                // token.getNext().setBefore(token.getBefore());
+                // c = new Player(token.getValue(), grid.getLength());
 
-                Symbol token = randomSymbol(spots);
-                token.getBefore().setNext(token.getNext());
-                token.getNext().setBefore(token.getBefore());
+                c = new Player(getPlayerToken(), grid.getLength());
+                tokenIteration(c, created);
+                created++;
 
-                c = new Player(token.getValue(), grid.getLength());
                 spots--;
                 setPInBox(c);
             }
             firstCurrent.setNextInGame(c);
-            createPlayers(players, render + 1, c, spots);
+            createPlayers(players, render + 1, c, spots, created);
         }
     }
 
