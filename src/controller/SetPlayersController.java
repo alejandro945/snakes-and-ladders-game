@@ -26,13 +26,13 @@ public class SetPlayersController {
     void randomTokens(ActionEvent event) {
         if (!players.getText().isEmpty()) {
             try {
-                game.setAmountPlayers(Integer.parseInt(players.getText()));
+                game.setChosenTokens(players.getText());
+                game.setAmountPlayers(players.getText().split(" ").length);
                 game.initializeGame();
 
                 gameController.showBoard();
 
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             } catch (NumberFormatException nfe) {
                 // Alerta ingresar números
@@ -45,12 +45,12 @@ public class SetPlayersController {
     void next(MouseEvent event) {
         if (!players.getText().isEmpty()) {
             try {
-
                 if (Integer.parseInt(players.getText()) > 10) {
                     gameController.alert(AlertType.WARNING, "Warning", "The number maximun of random player is 9");
                 } else if (Integer.parseInt(players.getText()) == 0) {
                     gameController.alert(AlertType.WARNING, "Warning", "The number of players can not be 0");
                 }
+                game.setChosenTokens("");
                 game.setAmountPlayers(Integer.parseInt(players.getText()));
                 game.initializeGame();
 
@@ -67,22 +67,4 @@ public class SetPlayersController {
         }
 
     }
-
-    /*
-     * @FXML void next(MouseEvent event) { if (!players.getText().isEmpty()) { try {
-     * String[] parts = players.getText().split(" "); game.setChosenTokens(parts);
-     * game.initializeGame();
-     * 
-     * game.getGrid().showMatriz();// Print Matriz CLS
-     * 
-     * gameController.showBoard();
-     * 
-     * } catch (IOException e) { // TODO Auto-generated catch block
-     * e.printStackTrace(); gameController.alert(AlertType.ERROR, "Error",
-     * "Fail to load the board"); } catch (NumberFormatException nfe) {
-     * gameController.alert(AlertType.ERROR, "Error", "Please insert only numbers");
-     * } }
-     * 
-     * }
-     */
 }

@@ -92,7 +92,6 @@ public class GameController {
         try {
             welcomeToMenu();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -144,7 +143,7 @@ public class GameController {
 
         alert.showAndWait();
     }
-
+//--------------------------------Modal
     public void modal() {
         TextInputDialog dialog = new TextInputDialog("walter");
         dialog.setTitle("Text Input Dialog");

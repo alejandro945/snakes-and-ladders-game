@@ -12,6 +12,9 @@ public class Player {
     private String tokenGame;
     private Player nextInGame;
     private Player nextInBox;
+    // binary-Tree
+    private Player left;
+    private Player right;
 
     public Player(String tokenGame, int laststep) {
         this.tokenGame = tokenGame;
@@ -20,6 +23,8 @@ public class Player {
         position = 1;
         this.laststep = laststep;
         r = new Random();
+        left = null;
+        right = null;
     }
 
     public String getNickName() {
@@ -133,6 +138,39 @@ public class Player {
      */
     public void reachedEnd(boolean a) {
         completed = a;
+    }
+    // ----------------------Binary-Tree--------------------------
+
+    public Player getLeft() {
+        return this.left;
+    }
+
+    public void setLeft(Player left) {
+        this.left = left;
+    }
+
+    public Player getRight() {
+        return this.right;
+    }
+
+    public void setRight(Player right) {
+        this.right = right;
+    }
+
+    public void insertNode(Player newPNode) {
+        if (newPNode.getScore() <= this.getScore()) {
+            if (left == null) {
+                left = newPNode;
+            } else {
+                left.insertNode(newPNode);
+            }
+        } else if (newPNode.getScore() >= this.getScore()) {
+            if (right == null) {
+                right = newPNode;
+            } else {
+                right.insertNode(newPNode);
+            }
+        }
     }
 
 }

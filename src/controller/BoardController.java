@@ -51,6 +51,7 @@ public class BoardController {
     void launchDice(ActionEvent event) {
         game.roll();
         diceImg(game.getCurrent().getDiceNumber());
+        resume.setText(movementResume());
         setBoard();
         if (!game.getFinished()) {
             game.getNextPlayer(game.getCurrent());
@@ -61,6 +62,11 @@ public class BoardController {
             gameController.modal();
             game.setScore();
         }
+    }
+
+    private String movementResume() {
+        return "The player " + game.getCurrent().getTokenGame() + " have launched dice and get "
+                + game.getCurrent().getDiceNumber() + " points";
     }
 
     private void setBoard() {
@@ -74,27 +80,27 @@ public class BoardController {
         Image i = null;
         switch (diceRender) {
         case 1:
-            i = new Image(getClass().getResourceAsStream("/ui/assets/img/Dices-01.png"));
+            i = new Image(getClass().getResourceAsStream("/ui/assets/img/Dice1.png"));
             diceImage.setImage(i);
             break;
         case 2:
-            i = new Image(getClass().getResourceAsStream("/ui/assets/img/Dices-03.png"));
+            i = new Image(getClass().getResourceAsStream("/ui/assets/img/Dice2.png"));
             diceImage.setImage(i);
             break;
         case 3:
-            i = new Image(getClass().getResourceAsStream("/ui/assets/img/Dices-04.png"));
+            i = new Image(getClass().getResourceAsStream("/ui/assets/img/Dice3.png"));
             diceImage.setImage(i);
             break;
         case 4:
-            i = new Image(getClass().getResourceAsStream("/ui/assets/img/Dices-05.png"));
+            i = new Image(getClass().getResourceAsStream("/ui/assets/img/Dice4.png"));
             diceImage.setImage(i);
             break;
         case 5:
-            i = new Image(getClass().getResourceAsStream("/ui/assets/img/Dices-06.png"));
+            i = new Image(getClass().getResourceAsStream("/ui/assets/img/Dice5.png"));
             diceImage.setImage(i);
             break;
         case 6:
-            i = new Image(getClass().getResourceAsStream("/ui/assets/img/Dices-07.png"));
+            i = new Image(getClass().getResourceAsStream("/ui/assets/img/Dice6.png"));
             diceImage.setImage(i);
             break;
         }
