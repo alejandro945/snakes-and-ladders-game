@@ -74,27 +74,27 @@ public class BoardController {
         Image i = null;
         switch (diceRender) {
         case 1:
-            i = new Image(getClass().getResourceAsStream("/ui/assets/img/1.png"));
+            i = new Image(getClass().getResourceAsStream("/ui/assets/img/Dices-01.png"));
             diceImage.setImage(i);
             break;
         case 2:
-            i = new Image(getClass().getResourceAsStream("/ui/assets/img/2.jpg"));
+            i = new Image(getClass().getResourceAsStream("/ui/assets/img/Dices-03.png"));
             diceImage.setImage(i);
             break;
         case 3:
-            i = new Image(getClass().getResourceAsStream("/ui/assets/img/3.jpg"));
+            i = new Image(getClass().getResourceAsStream("/ui/assets/img/Dices-04.png"));
             diceImage.setImage(i);
             break;
         case 4:
-            i = new Image(getClass().getResourceAsStream("/ui/assets/img/4.png"));
+            i = new Image(getClass().getResourceAsStream("/ui/assets/img/Dices-05.png"));
             diceImage.setImage(i);
             break;
         case 5:
-            i = new Image(getClass().getResourceAsStream("/ui/assets/img/5.png"));
+            i = new Image(getClass().getResourceAsStream("/ui/assets/img/Dices-06.png"));
             diceImage.setImage(i);
             break;
         case 6:
-            i = new Image(getClass().getResourceAsStream("/ui/assets/img/6.png"));
+            i = new Image(getClass().getResourceAsStream("/ui/assets/img/Dices-07.png"));
             diceImage.setImage(i);
             break;
         }
@@ -135,7 +135,7 @@ public class BoardController {
         boxInfill.add(snake, 2, 2);
         boxInfill.add(players, 1, 1);
         boxInfill.add(id, 0, 2);
-        boxInfill.add(ladder, 2, 2);
+        boxInfill.add(ladder, 2, 0);
         boxStyle(boxInfill, 0, 4);
 
         return boxInfill;
@@ -156,7 +156,7 @@ public class BoardController {
     }
 
     private String labelStyling() {
-        return ("-fx-font-size:12px;") + ("-fx-font-weight: bold;") + "-fx-font-family: \"Ubuntu\"";
+        return ("-fx-font-size:15px;") + ("-fx-font-weight: bold;") + "-fx-font-family: \"Ubuntu\"";
     }
 
     private boolean isEmpty(Object object) {

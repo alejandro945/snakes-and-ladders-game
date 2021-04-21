@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
@@ -20,7 +21,11 @@
 
 <AnchorPane id="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" stylesheets="@../assets/styles/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane id="background3" prefHeight="200.0" prefWidth="200.0" stylesheets="@../assets/styles/styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Pane id="background3" prefHeight="200.0" prefWidth="200.0" stylesheets="@../assets/styles/styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#9d9d9d" height="25.0" layoutX="231.0" layoutY="513.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: none; -fx-stroke-width: 0px;" width="107.0" />
+            <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#f0f0f000" height="25.0" layoutX="231.0" layoutY="513.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="INSIDE" strokeWidth="2.0" style="-fx-fill: none;" width="200.0" />
+         </children></Pane>
       <Label layoutX="753.0" layoutY="404.0" prefHeight="164.0" prefWidth="423.0" styleClass="title" stylesheets="@../assets/styles/styles.css" text="Configure Snakes and Ladders" wrapText="true" />
       <TextField fx:id="snakesLadders" layoutX="242.0" layoutY="252.0" promptText="#Snakes #Ladders" styleClass="textField" stylesheets="@../assets/styles/styles.css" />
       <Line endX="120.0" layoutX="340.0" layoutY="281.0" startX="-100.0" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="15.0" />
@@ -35,7 +40,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#9d9d9d" height="25.0" layoutX="211.0" layoutY="493.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: none; -fx-stroke-width: 0px;" width="107.0" />
-      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#f0f0f000" height="25.0" layoutX="211.0" layoutY="493.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="INSIDE" strokeWidth="2.0" style="-fx-fill: none;" width="200.0" />
+      <Label layoutX="295.0" layoutY="549.0" text="Progress" textFill="#616161">
+         <font>
+            <Font name="Ubuntu" size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

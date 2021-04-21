@@ -1,8 +1,13 @@
+@font-face {
+    font-family: 'Ubuntu';
+    src: url("../fonts/Ubuntu-Medium.ttf");
+}
+
 
 .buttonAlejo{
     -fx-text-fill:white; 
     -fx-font-size:25px; 
-    -fx-font-family: "Georgia"; 
+    -fx-font-family: "Ubuntu"; 
     -fx-background-radius:5; 
     -fx-background-color:rgb(129, 48, 204);  
 }
@@ -32,7 +37,7 @@
 
 .buttonExit{
     -fx-font-family: "Ubuntu"; 
-    -fx-font-weight: bold;
+    -fx-font-weight:  bold;
     -fx-text-fill:rgb(146, 146, 146);
     -fx-font-size:25px;
     -fx-border-radius: 0px;
@@ -63,6 +68,10 @@
     -fx-background-image: url("../img/Fondo-05.png");
     -fx-background-size: cover, auto;  
 }
+#background6{
+    -fx-background-image: url("../img/Fondo-06.png");
+    -fx-background-size: cover, auto;  
+}
 .linear-grad
 {
     -fx-background-color: linear-gradient(to bottom left, #A868A0, #2D75E8);
@@ -72,7 +81,7 @@
     -fx-font-family: "Ubuntu"; 
     -fx-font-weight: bold;
     -fx-text-fill:rgb(255, 255, 255);
-    -fx-font-size:48px;
+    -fx-font-size:45px;
     -fx-text-alignment: right;
 }
 

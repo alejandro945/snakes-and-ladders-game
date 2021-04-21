@@ -14,5 +14,13 @@
     ],
     "java.project.sourcePaths": [
         "src"
+    ],
+    "cSpell.words": [
+        "is",
+        "maximun",
+        "of",
+        "player",
+        "random",
+        "umber"
     ]
 }

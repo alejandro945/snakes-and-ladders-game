@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Arrays;
-
 public class MatrixGrid {
     private Box first;
     private int numColumns;
@@ -75,7 +73,7 @@ public class MatrixGrid {
     }
 
     public int getColor() {
-        return (int) (Math.random() * (255) + 150);
+        return (int) (Math.random() * (210) + 100);
     }
 
     public void createSnakes(int s, int render, char snakeName) {

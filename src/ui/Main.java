@@ -27,6 +27,7 @@ public class Main extends Application {
         fxmlloader.setController(gameController);
         Parent root = fxmlloader.load();
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("assets/styles/styles.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
