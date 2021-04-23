@@ -26,12 +26,12 @@ public class SetSnakesController {
         if (!snakesLadders.getText().isEmpty()) {
             try {
                 String[] parts = snakesLadders.getText().split(" ");
-                int gridSpace = (game.getColumns() * game.getRows()) / 2;
+                int gridSpace = (game.getColumns() * game.getRows()/2);
 
                 if (Integer.parseInt(parts[0]) + Integer.parseInt(parts[1]) > gridSpace - 2) {
                     gameController.alert(AlertType.WARNING, "Warning",
                             "The matriz out of boundaries, max number of ladders and snakes is "
-                                    + ((gridSpace / 2) - 1));
+                                    + ((gridSpace) - 2));
 
                 } else {
                     game.setSnakes(Integer.parseInt(parts[0]));
@@ -44,6 +44,8 @@ public class SetSnakesController {
                 gameController.alert(AlertType.ERROR, "Error", "Fail to load next screen");
             } catch (NumberFormatException nfe) {
                 gameController.alert(AlertType.ERROR, "Error", "Please insert only numbers");
+            } catch (ArrayIndexOutOfBoundsException aibe){
+                gameController.alert(AlertType.ERROR, "Error", "Please insert the numbers with a space between");
             }
 
         } else {

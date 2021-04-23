@@ -12,6 +12,35 @@ public class LeaderBoard {
         inordenHelper(root);
     }
 
+    public Player getNResult(Player node, int n, int i, int control) {
+        if (node == null) {
+            return null;
+        } else  {  // if (i < n)
+            getNResult(node.getLeft(), n, i+1, control);
+            
+            
+            //System.out.println( i + " - "+ n);
+            //if ((n) == i) {
+                System.out.println("return 1 "+node.getNickName() + " puntaje "+ node.getScore()+ "Valor numero " + control);
+                //return node;
+            //}
+
+            getNResult(node.getRight(), n, i+1, control);
+            System.out.println("return 2 "+node.getNickName());
+            return node;
+        }
+    }
+
+    public Player getwinner(Player node, int n, int i) {
+        if (node == null) {
+            return null;
+        }
+        getwinner(node.getLeft(), n, i-1);
+        System.out.println(node.getScore());
+        return node;
+        //getwinner(node.getRight());
+    }
+
     private void inordenHelper(Player node) {
         if (node == null) {
             return;
@@ -21,12 +50,14 @@ public class LeaderBoard {
         inordenHelper(node.getRight());
     }
 
-    public void insertNode(Player newPNode) {
+    public int insertNode(Player newPNode, int count) {
+        count++;
         if (root == null) {
             root = newPNode;
         } else {
             insertNode(root, newPNode);
         }
+        return count;
     }
 
     private void insertNode(Player parent, Player newPlayer) {
@@ -45,4 +76,11 @@ public class LeaderBoard {
         }
     }
 
+    public Player getRoot() {
+        return root;
+    }
+
+    public void setRoot(Player root) {
+        this.root = root;
+    }
 }

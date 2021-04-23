@@ -46,6 +46,8 @@ public class SetBoardController {
                 gameController.alert(AlertType.ERROR, "Error", "Fail to load next screen");
             } catch (NumberFormatException nfe) {
                 gameController.alert(AlertType.ERROR, "Error", "Please insert only numbers");
+            } catch (ArrayIndexOutOfBoundsException aibe){
+                gameController.alert(AlertType.ERROR, "Error", "Please insert the numbers with a space between");
             }
         } else {
             gameController.alert(AlertType.WARNING, "Warning", "Please complete the field");

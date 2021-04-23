@@ -24,9 +24,9 @@
    <children>
       <Pane id="background2" layoutX="350.0" layoutY="20.0" prefHeight="200.0" prefWidth="404.0" stylesheets="@../assets/styles/styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TextField fx:id="colsRows" layoutX="252.0" layoutY="262.0" promptText="#cols #rows" styleClass="textField" stylesheets="@../assets/styles/styles.css" />
-            <Line endX="120.0" layoutX="354.0" layoutY="290.0" startX="-100.0" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="15.0" strokeWidth="2.0" />
-            <ImageView fitHeight="30.0" fitWidth="25.0" layoutX="486.0" layoutY="264.0" onMouseClicked="#next" pickOnBounds="true" preserveRatio="true">
+            <TextField fx:id="colsRows" layoutX="252.0" layoutY="263.0" promptText="#cols #rows" styleClass="textField" stylesheets="@../assets/styles/styles.css" />
+            <Line endX="120.0" layoutX="354.0" layoutY="291.0" startX="-100.0" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="15.0" strokeWidth="2.0" />
+            <ImageView fitHeight="30.0" fitWidth="25.0" layoutX="486.0" layoutY="265.0" onMouseClicked="#next" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/img/next.png" />
                </image>
@@ -37,14 +37,24 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#9d9d9d" height="25.0" layoutX="230.0" layoutY="506.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: none; -fx-stroke-width: 0px;" width="63.0" />
-            <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#f0f0f000" height="25.0" layoutX="230.0" layoutY="506.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="INSIDE" strokeWidth="2.0" style="-fx-fill: none;" width="200.0" />
+            <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#9d9d9d" height="25.0" layoutX="222.0" layoutY="504.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: none; -fx-stroke-width: 0px;" width="63.0" />
+            <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#f0f0f000" height="25.0" layoutX="222.0" layoutY="504.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="INSIDE" strokeWidth="2.0" style="-fx-fill: none;" width="200.0" />
             <Label layoutX="792.0" layoutY="476.0" prefHeight="81.0" prefWidth="381.0" styleClass="title" stylesheets="@../assets/styles/styles.css" text="Configure Board" wrapText="true" />
-            <Label layoutX="289.0" layoutY="544.0" text="Progress" textFill="#616161">
+            <Label layoutX="279.0" layoutY="541.0" text="Progress" textFill="#616161">
                <font>
                   <Font name="Ubuntu" size="16.0" />
                </font>
             </Label>
+            <Group>
+               <children>
+                  <Text fill="#838383" layoutX="172.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Insert board size (#columns #Row), one space between." wrappingWidth="251.7294921875" />
+                  <Label layoutX="154.0" layoutY="150.0" prefHeight="19.0" prefWidth="99.0" text="Instruction" wrapText="true">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Group>
          </children>
       </Pane>
    </children>

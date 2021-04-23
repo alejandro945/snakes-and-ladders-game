@@ -58,7 +58,23 @@ public class SetPlayersController {
                 e.printStackTrace();
                 gameController.alert(AlertType.ERROR, "Error", "Fail to load the board");
             } catch (NumberFormatException nfe) {
-                gameController.alert(AlertType.ERROR, "Error", "Please insert only numbers");
+
+                if (!players.getText().isEmpty()) {
+                    try {
+                        game.setChosenTokens(players.getText());
+                        game.setAmountPlayers(players.getText().split(" ").length);
+                        game.initializeGame();
+                        gameController.showBoard();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    gameController.alert(AlertType.WARNING, "Warning", "Please complete the field");
+                }
+
+                //gameController.alert(AlertType.ERROR, "Error", "Please insert only numbers");
+            } catch (ArrayIndexOutOfBoundsException aibe){
+                gameController.alert(AlertType.ERROR, "Error", "Please insert the numbers with a space between");
             }
         } else {
             gameController.alert(AlertType.WARNING, "Warning", "Please complete the field");

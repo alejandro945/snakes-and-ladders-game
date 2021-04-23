@@ -79,11 +79,12 @@ public class GameController {
     public void topScores() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/screens/topScore.fxml"));
 
-        SetSnakesController controller = new SetSnakesController(this, game);
+        TopScoreController controller = new TopScoreController(this, game);
 
         fxmlLoader.setController(controller);
         Parent menu = fxmlLoader.load();
         mainPane.getChildren().setAll(menu);
+        controller.printList();
     }
 
     // Menu bar actions

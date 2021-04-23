@@ -12,10 +12,13 @@ public class Game {
     private int snakes;
     private int ladders;
 
+    private int topScoresNumb;
+
     private boolean finished;
 
     public Game() {
         topScore = new LeaderBoard();
+        topScoresNumb = 0;
     }
 
     public void initializeGame() {
@@ -58,8 +61,8 @@ public class Game {
     public void setWinnerScore() {
         int s = current.getMovements() * grid.getLength();
         current.setScore(s);
-        topScore.insertNode(current);
-        topScore.printInorden();
+        topScoresNumb = topScore.insertNode(current, topScoresNumb); 
+        //topScore.printInorden();
     }
 
     public void createPlayers(int players, int render, Player firstCurrent) {
@@ -250,4 +253,20 @@ public class Game {
         this.chosenTokens = chosenTokens;
     }
 
+    public int getTopScoresNumb() {
+        return topScoresNumb;
+    }
+
+    public void setTopScoresNumb(int topScoresNumb) {
+        this.topScoresNumb = topScoresNumb;
+    }
+
+    public LeaderBoard getTopScore() {
+        return topScore;
+    }
+
+    public void setTopScore(LeaderBoard topScore) {
+        this.topScore = topScore;
+    }  
+    
 }
