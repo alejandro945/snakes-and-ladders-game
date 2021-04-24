@@ -15,7 +15,7 @@ public class MenuController {
     }
 
     @FXML
-    void play(ActionEvent event) {
+    public void play(ActionEvent event) {
         try {
             gameController.setBoard();
         } catch (IOException e) {
@@ -25,7 +25,7 @@ public class MenuController {
     }
 
     @FXML
-    void topScores(ActionEvent event) {
+    public void topScores(ActionEvent event) {
         try {
             gameController.topScores();
         } catch (IOException e) {
@@ -35,7 +35,7 @@ public class MenuController {
     }
 
     @FXML
-    void exit(ActionEvent event) {
+    public void exit(ActionEvent event) {
         System.exit(0);
     }
 }

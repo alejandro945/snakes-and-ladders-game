@@ -22,7 +22,7 @@ public class SetBoardController {
     private TextField colsRows;
 
     @FXML
-    void next(MouseEvent event) {
+    public void next(MouseEvent event) {
         if (!colsRows.getText().isEmpty()) {
             try {
                 String[] parts = colsRows.getText().split(" ");

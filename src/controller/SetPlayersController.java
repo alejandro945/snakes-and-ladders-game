@@ -23,7 +23,7 @@ public class SetPlayersController {
     private TextField players;
 
     @FXML
-    void randomTokens(ActionEvent event) {
+    public void randomTokens(ActionEvent event) {
         if (!players.getText().isEmpty()) {
             try {
                 game.setChosenTokens(players.getText());
@@ -40,7 +40,7 @@ public class SetPlayersController {
     }
 
     @FXML
-    void next(MouseEvent event) {
+    public void next(MouseEvent event) {
         if (!players.getText().isEmpty()) {
             try {
                 if (Integer.parseInt(players.getText()) > 10) {

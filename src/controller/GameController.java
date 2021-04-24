@@ -154,7 +154,7 @@ public class GameController {
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()) {
             game.getCurrent().setNickName(result.get());
-            alert(AlertType.INFORMATION, "Success", "Player ninckname set sucesffully");
+            alert(AlertType.INFORMATION, "Success", "Player nickname set successfully");
             welcomeToMenu();
         }
     }
