@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.control.Label;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import model.Game;
@@ -24,7 +25,6 @@ public class TopScoreController {
         game.getTopScore().topList();
         //game.getTopScore().printLinearToplist();
         //System.out.println("finaliza el toplist");
-
     }
 
     @FXML
@@ -35,11 +35,10 @@ public class TopScoreController {
         createList(0);
 
         if (!topPlayers.getChildren().isEmpty()) {
-            topPlayers.setStyle(labelStyling());
+            
             boxStyle(topPlayers, 0, topPlayers.getChildren().size());
-            topPlayers.setHgap(20);
+            //topPlayers.setHgap(20);
         }
-
     }
 
     public void createList(int n) {
@@ -47,18 +46,28 @@ public class TopScoreController {
             //System.out.println("\n" + "Llamado " + n);
 
             Player winPlayer = game.getTopScore().getNResult(game.getTopScore().getTopRoot(), n, 0);
-            /* if( winPlayer != null){
-                System.out.println(winPlayer.getScore());
-            }else{
-                System.out.println("NUlo" + n);
-            } */
+           
+            GridPane newGridPane = new GridPane();
             
             if (winPlayer != null) {
-                Label temp = new Label( winPlayer.getNickName() + " - " + winPlayer.getScore());
-                Label temp2 = new Label((n+1) + ") ");
+                Label temp1 = new Label((n+1) + ") ");
+                Label temp2 = new Label( winPlayer.getNickName() );
+                Label temp3 = new Label( winPlayer.getScore()+"" );
 
-                topPlayers.add(temp, 1, n);
-                topPlayers.add(temp2, 0, n);
+                newGridPane.add(temp1, 0, 0);
+                newGridPane.add(temp2, 1, 0);
+                newGridPane.add(temp3, 2, 0);
+
+                if (!newGridPane.getChildren().isEmpty()) {
+                
+                    boxStyle(newGridPane, 0, newGridPane.getChildren().size());
+                    newGridPane.setStyle(labelStyling());
+                    newGridPane.setPrefHeight(60);
+                    newGridPane.getColumnConstraints().add(new ColumnConstraints(50));
+                    
+                }
+
+                topPlayers.add(newGridPane, 0 , n);
             }
 
             n++;
@@ -68,7 +77,7 @@ public class TopScoreController {
     }
 
     private String labelStyling() {
-        return "-fx-border-color: gray;" +"-fx-font-size:15px;" + "-fx-font-weight: bold;" + "-fx-font-family: \"Ubuntu\"";
+        return "-fx-padding: 10;" + "-fx-border-color: gray;" +"-fx-font-size:15px;" + "-fx-font-weight: bold;" + "-fx-font-family: \"Ubuntu\"";
     }
 
     private void boxStyle(GridPane gP, int n, int i) {
