@@ -1,83 +1,54 @@
 # Snakes and Ladders
 
-_Game_
+This program it's a Snakes and Ladders game version, you could play with your friends, 
+you can play throwing the dice or simulating the game.
 
-## Comenzando 🚀
+This version was created by Alejandro Varela and Juan David Ballesteros. The interesting about 
+the work is the application code don't use lists from java lang, util or collections, all lists 
+are linked list created by the authors.
 
-_Copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
+## How to play?
+Click on Play! then the game will ask you to configure the board and players parameters. 
+First settings are about the board size, then you set the quantity of ladders and snakes. 
+You continue to set the number of player and the token will be set randomly. 
 
-Mira **Deployment** para conocer como desplegar el proyecto.
+Then the board will appear and the right side you will see, the player turn to launch the dice. 
+Finally you need to click launch an play!
 
+## Rules
+Each player will launch the dice one time by round, when a player fall in a Snake head will go 
+back to the snake tail cell, the snake id is a letter, the head is always the cell above.
+
+When a player falls in a ladder base, will go up to the top ladder cell, the ladder id is a number 
+in the cell right and bottom corner. 
+
+The first player to get in to the last cell will win, and the player with less stapes to win will 
+appear in the top scores.
 
 ### Pre-requisitos 📋
 
-_Instalar el software Leer Requerimientos_
-
 ```
-Contar con un IDE o maquina virtual de java.
+You need JDK 11 or newest realest.
 ```
 
-### Instalación 🔧
-
-_Entorno de desarrollo_
-
-_Revisa el despliegue_
-
-```
-Go down
-```
-
-_Obtener datos del sistema en data_
-
-## Ejecuta las pruebas ⚙️
-
-_Pruebas automatizadas para este sistema_
-
-### Pruebas end-to-end 🔩
-
-_Persistencia_
-
-```
-No aplica para este proyecto
-```
-
-### Pruebas de estilo de codificación ⌨️
-
-_Redux_
-
-```
-No se implementaron
-```
-
-## Despliegue 📦
+## Deployment 📦
 
 _java -cp bin iu.Main_
 
-## Construido con 🛠️
+## Build with 🛠️
 
-_Herramientas del Proyecto_
+_Project tools_
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - El framework web usado
-* [Maven](https://maven.apache.org/) - Manejador de dependencias
-* [ROME](https://rometools.github.io/rome/) - Usado para generar RSS
+* Java
+* JavaFx
+* Scene Builder
+* VS code
 
-## Contribuyendo 🖇️
+## Authors ✒️
 
-Por favor lee el [CONTRIBUTING.md](https://gist.github.com/varela/#) para detalles de nuestro código de conducta, y el proceso para enviarnos pull requests.
 
-## Wiki 📖
-
-Puedes encontrar mucho más de cómo utilizar este proyecto en nuestra [Wiki](https://github.com/tu/proyecto/wiki)
-
-## Versionado 📌
-
-Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones disponibles, mira los [tags en este repositorio](#).
-
-## Autores ✒️
-
-_Apartado de los que ayudaron a levantar el proyecto desde sus inicios_
-
-* **Alejandro Varela** - *Trabajo Inicial* - [Alejandro Varela](https://github.com/alejandro945)
+* **Alejandro Varela**  - [Alejandro Varela](https://github.com/alejandro945)
+* **uan David Ballesteros**  - [Alejandro Varela](https://github.com/JuanDavidBallesteros)
 
 ---
 ⌨️ con ❤️ por [Alejandro Varela](https://github.com/alejandro945) y [Juan David Ballesteros](https://github.com/JuanDavidBallesteros) 😊
