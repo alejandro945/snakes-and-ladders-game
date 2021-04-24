@@ -4,41 +4,77 @@ public class LeaderBoard {
 
     private Player root;
 
+    private Player topRoot;
+
     public LeaderBoard() {
         root = null;
+        topRoot = null;
+    }
+
+    public void printLinearToplist(){
+        printLinearToplist(topRoot);
+    }
+
+    private void printLinearToplist(Player player){
+        if(player != null){
+            System.out.println(player.getScore());
+            printLinearToplist(player.getTopNext());
+        }
+    }
+
+    public Player getNResult(Player node, int n, int i) {
+        if(node == null ){
+            return null;
+        }     
+        if(i == n){
+           return node;
+        }
+        return getNResult(node.getTopNext(), n, i+1);
     }
 
     public void printInorden() {
         inordenHelper(root);
     }
 
-    public Player getNResult(Player node, int n, int i, int control) {
-        if (node == null) {
-            return null;
-        } else  {  // if (i < n)
-            getNResult(node.getLeft(), n, i+1, control);
-            
-            
-            //System.out.println( i + " - "+ n);
-            //if ((n) == i) {
-                System.out.println("return 1 "+node.getNickName() + " puntaje "+ node.getScore()+ "Valor numero " + control);
-                //return node;
-            //}
+    public void topList() {
+        topList(root);
+        
+    }
 
-            getNResult(node.getRight(), n, i+1, control);
-            System.out.println("return 2 "+node.getNickName());
-            return node;
+    private void topList(Player node) {
+        
+        if (node == null) {
+            //System.out.println("entra al null");
+            return;
+        } 
+        topList(node.getLeft());
+        //System.out.println(node.getScore());
+        addNodeTOpList(node);
+        topList(node.getRight());
+    }
+
+    private void addNodeTOpList(Player newNode) {
+
+        if (topRoot == null) {
+            //System.out.println(newNode.getScore());
+            topRoot = newNode;
+        } else {
+            //System.out.println(newNode.getScore());
+            nodeList(topRoot, newNode, 1);
         }
     }
 
-    public Player getwinner(Player node, int n, int i) {
-        if (node == null) {
-            return null;
+    private void nodeList(Player current, Player p, int i) {
+
+        if (current.getTopNext() == null) {
+            //System.out.println("Entra null");
+            current.setTopNext(p);
+            //System.out.println(p.getNickName() + " " + p.getScore() + " pos " + i);
+        } else {
+            //System.out.println("Entra al a consulta el siguiente");
+            current = current.getTopNext();
+            nodeList(current, p, i+1);
         }
-        getwinner(node.getLeft(), n, i-1);
-        System.out.println(node.getScore());
-        return node;
-        //getwinner(node.getRight());
     }
 
     private void inordenHelper(Player node) {
@@ -47,6 +83,7 @@ public class LeaderBoard {
         }
         inordenHelper(node.getLeft());
         System.out.println(node.getScore());
+        //nodeList(node, topRoot);
         inordenHelper(node.getRight());
     }
 
@@ -83,4 +120,13 @@ public class LeaderBoard {
     public void setRoot(Player root) {
         this.root = root;
     }
+
+    public Player getTopRoot() {
+        return topRoot;
+    }
+
+    public void setTopRoot(Player topRoot) {
+        this.topRoot = topRoot;
+    }
+
 }

@@ -79,7 +79,7 @@ public class GameController {
     public void topScores() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/screens/topScore.fxml"));
 
-        TopScoreController controller = new TopScoreController(this, game);
+        TopScoreController controller = new TopScoreController(game);
 
         fxmlLoader.setController(controller);
         Parent menu = fxmlLoader.load();

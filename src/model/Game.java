@@ -19,6 +19,9 @@ public class Game {
     public Game() {
         topScore = new LeaderBoard();
         topScoresNumb = 0;
+
+        testTree();
+
     }
 
     public void initializeGame() {
@@ -34,6 +37,62 @@ public class Game {
             createPlayers(amountPlayers, 1, firstPlayer);
         }
         current = firstPlayer;
+    }
+
+    private void testTree(){
+        Player p1 = new Player("H", 20);
+        Player p2 = new Player("H", 20);
+        Player p3 = new Player("H", 20);
+        Player p4 = new Player("H", 20);
+        Player p5 = new Player("H", 20);
+        Player p6 = new Player("H", 20);
+        Player p7 = new Player("H", 20);
+        Player p8 = new Player("H", 20);
+        Player p9 = new Player("H", 20);
+        Player p10 = new Player("H", 20);
+
+        p1.setNickName("p1");
+        p1.setScore(20);
+
+        p2.setNickName("p2");
+        p2.setScore(40);
+
+        p3.setNickName("p3");
+        p3.setScore(25);
+
+        p4.setNickName("p4");
+        p4.setScore(35);
+
+        p5.setNickName("p5");
+        p5.setScore(45);
+
+        p6.setNickName("p6");
+        p6.setScore(30);
+
+        p10.setNickName("p10");
+        p10.setScore(10);
+
+        p7.setNickName("p7");
+        p7.setScore(5);
+
+        p8.setNickName("p8");
+        p8.setScore(15);
+
+        p9.setNickName("p9");
+        p9.setScore(55);
+
+        topScoresNumb = topScore.insertNode(p1, topScoresNumb);
+        topScoresNumb = topScore.insertNode(p2, topScoresNumb); 
+        topScoresNumb = topScore.insertNode(p3, topScoresNumb); 
+        topScoresNumb = topScore.insertNode(p4, topScoresNumb); 
+        topScoresNumb = topScore.insertNode(p5, topScoresNumb); 
+        topScoresNumb = topScore.insertNode(p6, topScoresNumb);
+        topScoresNumb = topScore.insertNode(p7, topScoresNumb); 
+        topScoresNumb = topScore.insertNode(p8, topScoresNumb); 
+        topScoresNumb = topScore.insertNode(p9, topScoresNumb); 
+        topScoresNumb = topScore.insertNode(p10, topScoresNumb);  
+
+
     }
 
     private String tokenValidation(Player current, String randomToken, boolean found) {

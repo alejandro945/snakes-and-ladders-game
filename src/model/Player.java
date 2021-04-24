@@ -15,6 +15,7 @@ public class Player {
     // binary-Tree
     private Player left;
     private Player right;
+    private Player topNext;
 
     public Player(String tokenGame, int laststep) {
         this.tokenGame = tokenGame;
@@ -25,6 +26,7 @@ public class Player {
         r = new Random();
         left = null;
         right = null;
+        topNext = null;
     }
 
     public String getNickName() {
@@ -161,4 +163,13 @@ public class Player {
 
     }
 
+    public Player getTopNext() {
+        return topNext;
+    }
+
+    public void setTopNext(Player topNext) {
+        this.topNext = topNext;
+    }
+
+    
 }

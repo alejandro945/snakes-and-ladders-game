@@ -11,14 +11,19 @@ import model.Player;
 
 public class TopScoreController {
 
-    private GameController gameController;
     private Game game;
     private int listSize;
 
-    public TopScoreController(GameController gc, Game game) {
-        gameController = gc;
+    public TopScoreController(Game game) {
         this.game = game;
         listSize = game.getTopScoresNumb();
+        //game.getTopScore().printInorden();
+        //System.out.println(game.getTopScore().getTopRoot().getNickName());
+
+        //System.out.println(listSize);
+        game.getTopScore().topList();
+        //game.getTopScore().printLinearToplist();
+        //System.out.println("finaliza el toplist");
 
     }
 
@@ -27,20 +32,35 @@ public class TopScoreController {
 
     public void printList() {
         topPlayers.getChildren().clear();
-        createList(1);
-        topPlayers.setStyle(labelStyling());
-        boxStyle(topPlayers, 0, listSize);
+        createList(0);
+
+        if (!topPlayers.getChildren().isEmpty()) {
+            topPlayers.setStyle(labelStyling());
+            boxStyle(topPlayers, 0, topPlayers.getChildren().size());
+            topPlayers.setHgap(20);
+        }
+
     }
 
     public void createList(int n) {
-        if (n <= listSize) {
-            System.out.println("Llamado " + n);
-            Player winPlayer = game.getTopScore().getNResult(game.getTopScore().getRoot(), listSize, 1, 1);
-            if (winPlayer != null) {
-                Label temp = new Label(winPlayer.getNickName() + " - " + winPlayer.getScore());
+        if (n < listSize) {
+            //System.out.println("\n" + "Llamado " + n);
 
-                topPlayers.add(temp, 0, n);
+            Player winPlayer = game.getTopScore().getNResult(game.getTopScore().getTopRoot(), n, 0);
+            /* if( winPlayer != null){
+                System.out.println(winPlayer.getScore());
+            }else{
+                System.out.println("NUlo" + n);
+            } */
+            
+            if (winPlayer != null) {
+                Label temp = new Label( winPlayer.getNickName() + " - " + winPlayer.getScore());
+                Label temp2 = new Label((n+1) + ") ");
+
+                topPlayers.add(temp, 1, n);
+                topPlayers.add(temp2, 0, n);
             }
+
             n++;
 
             createList(n);
@@ -48,7 +68,7 @@ public class TopScoreController {
     }
 
     private String labelStyling() {
-        return "-fx-font-size:15px;" + "-fx-font-weight: bold;" + "-fx-font-family: \"Ubuntu\"";
+        return "-fx-border-color: gray;" +"-fx-font-size:15px;" + "-fx-font-weight: bold;" + "-fx-font-family: \"Ubuntu\"";
     }
 
     private void boxStyle(GridPane gP, int n, int i) {
@@ -59,7 +79,7 @@ public class TopScoreController {
             GridPane.setVgrow(gP.getChildren().get(n), Priority.ALWAYS);
             GridPane.setHalignment(gP.getChildren().get(n), HPos.CENTER);
             GridPane.setValignment(gP.getChildren().get(n), VPos.CENTER);
-            
+
             n++;
             boxStyle(gP, n, i);
         }
