@@ -55,7 +55,7 @@ public class BoardController {
         roll();
     }
 
-    private void roll() throws IOException  {
+    private void roll() throws IOException {
         game.roll();
         diceImg(game.getCurrent().getDiceNumber());
         resume.setText(movementResume());
@@ -66,9 +66,9 @@ public class BoardController {
         } else {
             gameController.alert(AlertType.WARNING, "Warning", "The player: " + game.getCurrent().getTokenGame()
                     + " have reached end with " + game.getCurrent().getMovements() + " movements");
-          
+
             gameController.modal();
-      
+
             game.setWinnerScore();
             try {
                 game.saveData();

@@ -11,7 +11,7 @@ This version was created by Alejandro Varela and Juan David Ballesteros. The int
 the work is the application code don't use lists from java lang, util or collections, all lists 
 are linked list created by the authors.
 
-## How to play?
+## How to play? 💥
 Click on Play! then the game will ask you to configure the board and players parameters. 
 First settings are about the board size, then you set the quantity of ladders and snakes. 
 You continue to set the number of player and the token will be set randomly. 
@@ -19,7 +19,7 @@ You continue to set the number of player and the token will be set randomly.
 Then the board will appear and the right side you will see, the player turn to launch the dice. 
 Finally you need to click launch an play!
 
-## Rules
+## Rules 📢
 Each player will launch the dice one time by round, when a player fall in a Snake head will go 
 back to the snake tail cell, the snake id is a letter, the head is always the cell above.
 
@@ -32,15 +32,18 @@ appear in the top scores.
 ### Pre-requisitos 📋
 
 ```
-You need JDK 11 or newest realest.
+You need at least JRE 1.8_261, JDK 11 or newest realest.
 ```
+## Documentation 📃
+
+**Click here ➡️ [Requirements](https://github.com/alejandro945/snakes-and-ladders-game/blob/master/docs/Documents.pdf)
 
 ## Deployment 📦
 
 With file.jar
 ```java -jar snakes-and-ladders.jar```
 
-## Screens
+## Screens 🚀
 
 * <b>_Menu_</b> <br><br>
 ![ScreenShot](https://github.com/alejandro945/snakes-and-ladders-game/blob/master/src/ui/assets/img/menu.png)<br><br>
@@ -54,6 +57,7 @@ With file.jar
 ![ScreenShot](https://github.com/alejandro945/snakes-and-ladders-game/blob/master/src/ui/assets/img/board.png)<br><br>
 * <b>_Top Scores_</b> <br><br>
 ![ScreenShot](https://github.com/alejandro945/snakes-and-ladders-game/blob/master/src/ui/assets/img/topScores.png)<br><br>
+
 ## Build with 🛠️
 
 _Project tools_
@@ -63,6 +67,7 @@ _Project tools_
 * Scene Builder
 * VS code
 
+[![forthebadge](https://forthebadge.com/images/badges/made-with-java.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 ## Authors ✒️
 
 * **Alejandro Varela**  - [Alejandro Varela](https://github.com/alejandro945)
