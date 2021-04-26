@@ -1,6 +1,7 @@
 <div align="center">
-<h2> Bienvenidos a nuestro proyecto! <img src="https://github.com/ABSphreak/ABSphreak/blob/master/gifs/Hi.gif" width="30px"></h2>
+<h2> Welcome to our proyect! <img src="https://github.com/ABSphreak/ABSphreak/blob/master/gifs/Hi.gif" width="30px"></h2>
 </div>
+
 # Snakes and Ladders 🐍 ![Status badge](https://img.shields.io/badge/status-in%20progress-yellow)
 
 This program it's a Snakes and Ladders game version, you could play with your friends, 
@@ -33,26 +34,26 @@ appear in the top scores.
 ```
 You need JDK 11 or newest realest.
 ```
-With file.jar
-```java -jar casa-dorada.jar```
 
 ## Deployment 📦
 
 With file.jar
-```java -jar casa-dorada.jar```
+```java -jar snakes-and-ladders.jar```
 
 ## Screens
 
 * <b>_Menu_</b> <br><br>
-![ScreenShot](https://github.com/alejandro945/system-order-casa-dorada/blob/master/src/ui/assets/img/loginR.png)<br><br>
+![ScreenShot](https://github.com/alejandro945/snakes-and-ladders-game/blob/master/src/ui/assets/img/menu.png)<br><br>
 * <b>_Board Configuration_</b> <br><br>
-![ScreenShot](https://github.com/alejandro945/system-order-casa-dorada/blob/master/src/ui/assets/img/dashboard.png)<br><br>
-* <b>_Costumers_</b> <br><br>
-![ScreenShot](https://github.com/alejandro945/system-order-casa-dorada/blob/master/src/ui/assets/img/costumers.png)<br><br>
-* <b>_Employees_</b> <br><br>
-![ScreenShot](https://github.com/alejandro945/system-order-casa-dorada/blob/master/src/ui/assets/img/employees.png)<br><br>
-* <b>_Users_</b> <br><br>
-![ScreenShot](https://github.com/alejandro945/system-order-casa-dorada/blob/master/src/ui/assets/img/users.png)<br><br>
+![ScreenShot](https://github.com/alejandro945/snakes-and-ladders-game/blob/master/src/ui/assets/img/configBoard.png)<br><br>
+* <b>_Snakes and Ladders Configuration_</b> <br><br>
+![ScreenShot](https://github.com/alejandro945/snakes-and-ladders-game/blob/master/src/ui/assets/img/configSnakesLadders.png)<br><br>
+* <b>_Players Configuration_</b> <br><br>
+![ScreenShot](https://github.com/alejandro945/snakes-and-ladders-game/blob/master/src/ui/assets/img/configPlayer.png)<br><br>
+* <b>_Game_</b> <br><br>
+![ScreenShot](https://github.com/alejandro945/snakes-and-ladders-game/blob/master/src/ui/assets/img/board.png)<br><br>
+* <b>_Top Scores_</b> <br><br>
+![ScreenShot](https://github.com/alejandro945/snakes-and-ladders-game/blob/master/src/ui/assets/img/topScores.png)<br><br>
 ## Build with 🛠️
 
 _Project tools_
@@ -71,5 +72,7 @@ _Project tools_
 <div align="center">
 <i>Random dev joke for you!</i><br>
 <a href="https://readme-jokes.vercel.app"><img align="center" src="https://readme-jokes.vercel.app/api" alt="README Jokes"></a>
+
+
 ⌨️ con ❤️ por [Alejandro Varela](https://github.com/alejandro945) y [Juan David Ballesteros](https://github.com/JuanDavidBallesteros) 😊
 
