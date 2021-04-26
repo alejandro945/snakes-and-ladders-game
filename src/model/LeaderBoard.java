@@ -1,14 +1,21 @@
 package model;
 
-public class LeaderBoard {
+import java.io.Serializable;
+
+public class LeaderBoard implements Serializable {
+    private static final long serialVersionUID = 1;
 
     private Player root;
 
     private Player topRoot;
 
+    private int topScoresNumb;
+
     public LeaderBoard() {
         root = null;
         topRoot = null;
+
+        topScoresNumb = 0;
     }
 
     public void printLinearToplist(){
@@ -17,7 +24,6 @@ public class LeaderBoard {
 
     private void printLinearToplist(Player player){
         if(player != null){
-            System.out.println(player.getScore());
             printLinearToplist(player.getTopNext());
         }
     }
@@ -37,6 +43,8 @@ public class LeaderBoard {
     }
 
     public void topList() {
+        
+        topRoot=null;
         topList(root);
         
     }
@@ -44,36 +52,31 @@ public class LeaderBoard {
     private void topList(Player node) {
         
         if (node == null) {
-            //System.out.println("entra al null");
             return;
         } 
         topList(node.getLeft());
-        //System.out.println(node.getScore());
-        addNodeTOpList(node);
+        node.setTopNext(null);
+        addNodeTopList(node);
         topList(node.getRight());
     }
 
-    private void addNodeTOpList(Player newNode) {
+    private void addNodeTopList(Player newNode) {
 
         if (topRoot == null) {
-            //System.out.println(newNode.getScore());
             topRoot = newNode;
+            
         } else {
-            //System.out.println(newNode.getScore());
-            nodeList(topRoot, newNode, 1);
+
+            nodeList(topRoot, newNode);
         }
     }
 
-    private void nodeList(Player current, Player p, int i) {
+    private void nodeList(Player current, Player p) {
 
         if (current.getTopNext() == null) {
-            //System.out.println("Entra null");
             current.setTopNext(p);
-            //System.out.println(p.getNickName() + " " + p.getScore() + " pos " + i);
-        } else {
-            //System.out.println("Entra al a consulta el siguiente");
-            current = current.getTopNext();
-            nodeList(current, p, i+1);
+        } else { 
+            nodeList(current.getTopNext(), p);
         }
     }
 
@@ -83,18 +86,18 @@ public class LeaderBoard {
         }
         inordenHelper(node.getLeft());
         System.out.println(node.getScore());
-        //nodeList(node, topRoot);
         inordenHelper(node.getRight());
     }
 
-    public int insertNode(Player newPNode, int count) {
-        count++;
+    public void insertNode(Player newPNode) {
+        topScoresNumb++;
+        
         if (root == null) {
             root = newPNode;
         } else {
             insertNode(root, newPNode);
         }
-        return count;
+        
     }
 
     private void insertNode(Player parent, Player newPlayer) {
@@ -127,6 +130,14 @@ public class LeaderBoard {
 
     public void setTopRoot(Player topRoot) {
         this.topRoot = topRoot;
+    }
+
+    public int getTopScoresNumb() {
+        return topScoresNumb;
+    }
+
+    public void setTopScoresNumb(int topScoresNumb) {
+        this.topScoresNumb = topScoresNumb;
     }
 
 }

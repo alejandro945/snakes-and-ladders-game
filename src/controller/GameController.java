@@ -21,6 +21,22 @@ public class GameController {
 
     public GameController(Game game) {
         this.game = game;
+
+        serialization();
+    }
+
+    private void serialization(){
+        try {
+            boolean loaded = game.loadData();
+            if (!loaded) {
+               alert(AlertType.INFORMATION, "Welcome", "You will use a no records version");
+            }
+        } catch (ClassNotFoundException | IOException e) {
+
+           alert(AlertType.ERROR, "Fail", "The data can't be loaded. The data file is corrupted");
+
+            e.printStackTrace();
+        }
     }
 
     // --------------------------- navigation

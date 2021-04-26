@@ -1,8 +1,11 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class Player {
+public class Player implements Serializable {
+    private static final long serialVersionUID = 1;
+    
     private Random r;
     private int number, laststep, position;
     private boolean completed;
@@ -16,6 +19,9 @@ public class Player {
     private Player left;
     private Player right;
     private Player topNext;
+
+    // Information
+    private String info;
 
     public Player(String tokenGame, int laststep) {
         this.tokenGame = tokenGame;
@@ -171,5 +177,12 @@ public class Player {
         this.topNext = topNext;
     }
 
-    
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
 }

@@ -4,10 +4,11 @@ import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.input.MouseEvent;
 import model.*;
 
 public class MenuController {
-    
+
     private GameController gameController;
 
     public MenuController(GameController gc, Game game) {
@@ -19,7 +20,6 @@ public class MenuController {
         try {
             gameController.setBoard();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -29,7 +29,6 @@ public class MenuController {
         try {
             gameController.topScores();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -37,5 +36,16 @@ public class MenuController {
     @FXML
     public void exit(ActionEvent event) {
         System.exit(0);
+    }
+
+    @FXML
+    public void github(MouseEvent event) throws IOException {
+        String osName = System.getProperty("os.name");
+        if (osName.contains("Windows"))
+            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + "https://github.com/alejandro945/snakes-and-ladders-game ");
+        else if (osName.contains("Linux"))
+            Runtime.getRuntime().exec("xdg-open " + "https://github.com/alejandro945/snakes-and-ladders-game ");
+        else if (osName.contains("Mac OS X"))
+            Runtime.getRuntime().exec("open " + "https://github.com/alejandro945/snakes-and-ladders-game ");
     }
 }

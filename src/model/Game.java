@@ -1,5 +1,12 @@
 package model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 public class Game {
     private LeaderBoard topScore;
     private Player firstPlayer;
@@ -12,16 +19,12 @@ public class Game {
     private int snakes;
     private int ladders;
 
-    private int topScoresNumb;
+    public final static String FILE_NAME = "data/game.sl";
 
     private boolean finished;
 
     public Game() {
         topScore = new LeaderBoard();
-        topScoresNumb = 0;
-
-        testTree();
-
     }
 
     public void initializeGame() {
@@ -37,62 +40,6 @@ public class Game {
             createPlayers(amountPlayers, 1, firstPlayer);
         }
         current = firstPlayer;
-    }
-
-    private void testTree(){
-        Player p1 = new Player("H", 20);
-        Player p2 = new Player("H", 20);
-        Player p3 = new Player("H", 20);
-        Player p4 = new Player("H", 20);
-        Player p5 = new Player("H", 20);
-        Player p6 = new Player("H", 20);
-        Player p7 = new Player("H", 20);
-        Player p8 = new Player("H", 20);
-        Player p9 = new Player("H", 20);
-        Player p10 = new Player("H", 20);
-
-        p1.setNickName("p1");
-        p1.setScore(20);
-
-        p2.setNickName("p2");
-        p2.setScore(40);
-
-        p3.setNickName("p3");
-        p3.setScore(25);
-
-        p4.setNickName("p4");
-        p4.setScore(35);
-
-        p5.setNickName("p5");
-        p5.setScore(45);
-
-        p6.setNickName("p6");
-        p6.setScore(30);
-
-        p10.setNickName("p10");
-        p10.setScore(10);
-
-        p7.setNickName("p7");
-        p7.setScore(5);
-
-        p8.setNickName("p8");
-        p8.setScore(15);
-
-        p9.setNickName("p9");
-        p9.setScore(55);
-
-        topScoresNumb = topScore.insertNode(p1, topScoresNumb);
-        topScoresNumb = topScore.insertNode(p2, topScoresNumb); 
-        topScoresNumb = topScore.insertNode(p3, topScoresNumb); 
-        topScoresNumb = topScore.insertNode(p4, topScoresNumb); 
-        topScoresNumb = topScore.insertNode(p5, topScoresNumb); 
-        topScoresNumb = topScore.insertNode(p6, topScoresNumb);
-        topScoresNumb = topScore.insertNode(p7, topScoresNumb); 
-        topScoresNumb = topScore.insertNode(p8, topScoresNumb); 
-        topScoresNumb = topScore.insertNode(p9, topScoresNumb); 
-        topScoresNumb = topScore.insertNode(p10, topScoresNumb);  
-
-
     }
 
     private String tokenValidation(Player current, String randomToken, boolean found) {
@@ -120,16 +67,24 @@ public class Game {
     public void setWinnerScore() {
         int s = current.getMovements() * grid.getLength();
         current.setScore(s);
-        topScoresNumb = topScore.insertNode(current, topScoresNumb); 
-        //topScore.printInorden();
+        String info ="B:"+rows+"x"+columns + " S:" + snakes + " L:" + ladders +" P:" + amountPlayers + " T:"  + playersTokens(firstPlayer, "");
+        current.setInfo(info);
+
+        topScore.insertNode(current);
+    }
+
+    private String playersTokens(Player current, String tokens){
+        if(current.getNextInGame() == null){
+            return tokens;
+        } else {
+            tokens = tokens + " ; " + current.getTokenGame();
+            return playersTokens(current.getNextInGame(), tokens);
+        }
     }
 
     public void createPlayers(int players, int render, Player firstCurrent) {
         if (render < players) {
             Player c = null;
-            if (render == 1) {
-                // setPInBox(firstCurrent);
-            }
             c = new Player(tokenValidation(firstPlayer, getPlayerToken(), true), grid.getLength());
             setPInBox(c);
             firstCurrent.setNextInGame(c);
@@ -312,20 +267,29 @@ public class Game {
         this.chosenTokens = chosenTokens;
     }
 
-    public int getTopScoresNumb() {
-        return topScoresNumb;
-    }
-
-    public void setTopScoresNumb(int topScoresNumb) {
-        this.topScoresNumb = topScoresNumb;
-    }
-
     public LeaderBoard getTopScore() {
         return topScore;
     }
 
     public void setTopScore(LeaderBoard topScore) {
         this.topScore = topScore;
-    }  
-    
+    }
+
+    public void saveData() throws IOException {
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME));
+        oos.writeObject(topScore);
+        oos.close();
+    }
+
+    public boolean loadData() throws IOException, ClassNotFoundException {
+        File f = new File(FILE_NAME);
+        boolean loaded = false;
+        if (f.exists()) {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
+            topScore = (LeaderBoard) ois.readObject();
+            ois.close();
+            loaded = true;
+        }
+        return loaded;
+    }
 }

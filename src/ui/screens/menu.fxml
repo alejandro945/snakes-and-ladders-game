@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -15,7 +16,17 @@
 
 <Pane id="background1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" stylesheets="@../assets/styles/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane id="background1" prefHeight="600.0" prefWidth="1200.0" stylesheets="@../assets/styles/styles.css" />
+      <Pane id="background1" prefHeight="600.0" prefWidth="1200.0" stylesheets="@../assets/styles/styles.css">
+         <children>
+            <ImageView fitHeight="65.0" fitWidth="28.0" layoutX="25.0" layoutY="549.0" onMouseClicked="#github" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/img/github.png" />
+               </image>
+            </ImageView>
+         </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Pane>
       <Label layoutX="827.0" layoutY="431.0" prefHeight="115.0" prefWidth="337.0" styleClass="title" stylesheets="@../assets/styles/styles.css" text="Snakes and Ladders Game" textFill="#757575" wrapText="true">
          <font>
             <Font name="System Bold" size="41.0" />

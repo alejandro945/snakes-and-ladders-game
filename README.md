@@ -46,9 +46,8 @@ _Project tools_
 
 ## Authors ✒️
 
-
 * **Alejandro Varela**  - [Alejandro Varela](https://github.com/alejandro945)
-* **uan David Ballesteros**  - [Alejandro Varela](https://github.com/JuanDavidBallesteros)
+* **Juan David Ballesteros**  - [Juan David Ballesteros](https://github.com/JuanDavidBallesteros)
 
 ---
 ⌨️ con ❤️ por [Alejandro Varela](https://github.com/alejandro945) y [Juan David Ballesteros](https://github.com/JuanDavidBallesteros) 😊
