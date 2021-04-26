@@ -29,7 +29,7 @@ in the cell right and bottom corner.
 The first player to get in to the last cell will win, and the player with less stapes to win will 
 appear in the top scores.
 
-### Pre-requisitos 📋
+### Pre-requirements 📋
 
 ```
 You need at least JRE 1.8_261, JDK 11 or newest realest.
