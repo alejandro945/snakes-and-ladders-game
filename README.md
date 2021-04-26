@@ -1,4 +1,7 @@
-# Snakes and Ladders
+<div align="center">
+<h2> Bienvenidos a nuestro proyecto! <img src="https://github.com/ABSphreak/ABSphreak/blob/master/gifs/Hi.gif" width="30px"></h2>
+</div>
+# Snakes and Ladders 🐍 ![Status badge](https://img.shields.io/badge/status-in%20progress-yellow)
 
 This program it's a Snakes and Ladders game version, you could play with your friends, 
 you can play throwing the dice or simulating the game.
@@ -30,11 +33,26 @@ appear in the top scores.
 ```
 You need JDK 11 or newest realest.
 ```
+With file.jar
+```java -jar casa-dorada.jar```
 
 ## Deployment 📦
 
-_java -cp bin iu.Main_
+With file.jar
+```java -jar casa-dorada.jar```
 
+## Screens
+
+* <b>_Menu_</b> <br><br>
+![ScreenShot](https://github.com/alejandro945/system-order-casa-dorada/blob/master/src/ui/assets/img/loginR.png)<br><br>
+* <b>_Board Configuration_</b> <br><br>
+![ScreenShot](https://github.com/alejandro945/system-order-casa-dorada/blob/master/src/ui/assets/img/dashboard.png)<br><br>
+* <b>_Costumers_</b> <br><br>
+![ScreenShot](https://github.com/alejandro945/system-order-casa-dorada/blob/master/src/ui/assets/img/costumers.png)<br><br>
+* <b>_Employees_</b> <br><br>
+![ScreenShot](https://github.com/alejandro945/system-order-casa-dorada/blob/master/src/ui/assets/img/employees.png)<br><br>
+* <b>_Users_</b> <br><br>
+![ScreenShot](https://github.com/alejandro945/system-order-casa-dorada/blob/master/src/ui/assets/img/users.png)<br><br>
 ## Build with 🛠️
 
 _Project tools_
@@ -50,5 +68,8 @@ _Project tools_
 * **Juan David Ballesteros**  - [Juan David Ballesteros](https://github.com/JuanDavidBallesteros)
 
 ---
+<div align="center">
+<i>Random dev joke for you!</i><br>
+<a href="https://readme-jokes.vercel.app"><img align="center" src="https://readme-jokes.vercel.app/api" alt="README Jokes"></a>
 ⌨️ con ❤️ por [Alejandro Varela](https://github.com/alejandro945) y [Juan David Ballesteros](https://github.com/JuanDavidBallesteros) 😊
 

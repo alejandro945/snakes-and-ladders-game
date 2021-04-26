@@ -22,7 +22,7 @@
    <children>
       <Pane id="background5" layoutX="114.0" layoutY="14.0" prefHeight="526.0" prefWidth="988.0" stylesheets="@../assets/styles/styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Label layoutX="858.0" layoutY="495.0" prefHeight="56.0" prefWidth="381.0" styleClass="title" stylesheets="@../assets/styles/styles.css" text="Top Scores" wrapText="true" />
-      <VBox layoutX="57.0" layoutY="64.0" prefHeight="493.0" prefWidth="541.0" style="-fx-background-color: none; -fx-border-width: 0 px;">
+      <VBox layoutX="57.0" layoutY="64.0" prefHeight="493.0" prefWidth="541.0" style="-fx-background-color: none; -fx-border-width: 0;">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>

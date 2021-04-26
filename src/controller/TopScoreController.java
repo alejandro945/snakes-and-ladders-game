@@ -95,6 +95,7 @@ public class TopScoreController {
     private String labelStyling() {
         return "-fx-padding: 10;" + "-fx-border-color: gray;" + "-fx-font-size:15px;" + "-fx-font-weight: bold;"
                 + "-fx-font-family: \"Ubuntu\"";
+
     }
 
     private void boxStyle(GridPane gP, int n, int i) {
@@ -110,4 +111,5 @@ public class TopScoreController {
             boxStyle(gP, n, i);
         }
     }
+
 }

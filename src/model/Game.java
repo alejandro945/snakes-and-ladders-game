@@ -67,18 +67,20 @@ public class Game {
     public void setWinnerScore() {
         int s = current.getMovements() * grid.getLength();
         current.setScore(s);
-        String info ="B:"+rows+"x"+columns + " S:" + snakes + " L:" + ladders +" P:" + amountPlayers + " T:"  + playersTokens(firstPlayer, "");
+        String info = "B:" + rows + "x" + columns + " S:" + snakes + " L:" + ladders + " P:" + amountPlayers + " T:"
+                + playersTokens(firstPlayer, "", "");
         current.setInfo(info);
 
         topScore.insertNode(current);
     }
 
-    private String playersTokens(Player current, String tokens){
-        if(current.getNextInGame() == null){
+    private String playersTokens(Player current, String tokens, String sep) {
+        if (current.getNextInGame() == null) {
+            tokens = tokens + sep + current.getTokenGame();
             return tokens;
         } else {
-            tokens = tokens + " ; " + current.getTokenGame();
-            return playersTokens(current.getNextInGame(), tokens);
+            tokens = tokens + sep + current.getTokenGame();
+            return playersTokens(current.getNextInGame(), tokens, " ");
         }
     }
 
